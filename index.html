@@ -4,246 +4,161 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>シニアのための1ヶ月ヨガプログラム</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0&display=swap">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
-    background: #fdf6ee;
-    color: #3a3226;
-    font-size: 18px;
-    line-height: 1.8;
-    padding-bottom: 72px;
-  }
-
-  header {
-    background: linear-gradient(135deg, #7aab8a 0%, #5c9472 100%);
-    color: white;
-    text-align: center;
-    padding: 32px 20px 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-  header h1 { font-size: 28px; margin-bottom: 6px; letter-spacing: 2px; }
-  header p  { font-size: 16px; opacity: 0.9; }
-
-  .week-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 20px 16px 10px;
-    flex-wrap: wrap;
-  }
-  .week-tab {
-    background: white;
-    border: 2px solid #7aab8a;
-    color: #5c9472;
-    border-radius: 30px;
-    padding: 10px 22px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .week-tab:hover, .week-tab.active { background: #7aab8a; color: white; }
-
-  .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 16px;
-  }
-  .day-btn {
-    background: white;
-    border: 2px solid #d4e8da;
-    border-radius: 12px;
-    padding: 12px 4px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    min-height: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .day-btn:hover { border-color: #7aab8a; background: #f0f8f2; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(122,171,138,0.2); }
-  .day-btn.active { background: #7aab8a; border-color: #5c9472; color: white; }
-  .day-btn.completed { background: #e8f5ec; border-color: #a8d4b4; }
-  .day-num   { font-size: 20px; font-weight: bold; }
-  .day-label { font-size: 10px; margin-top: 2px; opacity: 0.8; }
-  .day-check { font-size: 14px; margin-top: 2px; }
-
-  .lesson-panel { max-width: 700px; margin: 0 auto 40px; padding: 0 16px; display: none; }
-  .lesson-panel.visible { display: block; }
-
-  .lesson-card { background: white; border-radius: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); overflow: hidden; }
-  .lesson-header { background: linear-gradient(135deg, #7aab8a, #5c9472); color: white; padding: 24px; }
-  .lesson-day   { font-size: 14px; opacity: 0.85; margin-bottom: 4px; }
-  .lesson-title { font-size: 24px; font-weight: bold; margin-bottom: 8px; }
-  .lesson-meta  { display: flex; gap: 16px; font-size: 14px; opacity: 0.9; }
-  .lesson-body  { padding: 24px; }
-
-  .intro-box {
-    background: #f0f8f2;
-    border-left: 4px solid #7aab8a;
-    border-radius: 0 10px 10px 0;
-    padding: 16px 20px;
-    margin-bottom: 24px;
-    font-size: 16px;
-  }
-
-  .section-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #5c9472;
-    border-bottom: 2px solid #d4e8da;
-    padding-bottom: 8px;
-    margin: 24px 0 16px;
-  }
-
-  .pose-card {
-    background: #fafffe;
-    border: 1px solid #d4e8da;
-    border-radius: 14px;
-    padding: 20px;
-    margin-bottom: 16px;
-  }
-  .pose-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-
-  /* Material Symbols icon circle */
-  .pose-icon {
-    width: 58px; height: 58px;
-    background: linear-gradient(135deg, #e0f2e8, #c8e8d4);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    color: #3d7a56;
-    box-shadow: 0 2px 8px rgba(60,120,80,0.18);
-  }
-  .pose-icon .material-symbols-outlined {
-    font-size: 30px;
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-  }
-
-  .pose-name     { font-size: 18px; font-weight: bold; color: #3a6644; }
-  .pose-duration { font-size: 13px; color: #888; margin-top: 2px; }
-
-  .steps { list-style: none; padding: 0; }
-  .steps li { display: flex; gap: 12px; margin-bottom: 10px; font-size: 16px; line-height: 1.7; }
-  .step-num {
-    background: #7aab8a; color: white;
-    border-radius: 50%;
-    width: 26px; height: 26px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: bold;
-    flex-shrink: 0; margin-top: 2px;
-  }
-
-  .tip-box {
-    background: #fff8e7; border: 1px solid #f0d080;
-    border-radius: 10px; padding: 14px 18px; margin-top: 14px; font-size: 15px;
-  }
-  .tip-box::before { content: "💡 ポイント："; font-weight: bold; color: #b8860b; }
-
-  .caution-box {
-    background: #fff0f0; border: 1px solid #f0b0b0;
-    border-radius: 10px; padding: 14px 18px; margin-top: 10px; font-size: 15px;
-  }
-  .caution-box::before { content: "⚠️ 注意："; font-weight: bold; color: #c0392b; }
-
-  .breathing-box {
-    background: #f0f4ff; border: 1px solid #b0c4f0;
-    border-radius: 10px; padding: 16px 18px; margin: 16px 0; font-size: 16px;
-  }
-  .breathing-box .b-title { font-weight: bold; color: #3a5ab0; margin-bottom: 8px; font-size: 17px; }
-
-  .complete-btn {
-    display: block; width: 100%;
-    background: linear-gradient(135deg, #7aab8a, #5c9472);
-    color: white; border: none; border-radius: 14px;
-    padding: 18px; font-size: 18px; font-weight: bold;
-    cursor: pointer; margin-top: 24px; transition: all 0.2s; letter-spacing: 1px;
-  }
-  .complete-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(92,148,114,0.4); }
-  .complete-btn.done { background: linear-gradient(135deg, #a8d4b4, #88b898); }
-
-  /* Video */
-  .video-section { margin: 20px 0 24px; }
-  .video-wrapper {
-    position: relative; padding-bottom: 56.25%; height: 0;
-    border-radius: 14px; overflow: hidden;
-    background: #111; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
-  .video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
-  .video-caption { font-size: 13px; color: #888; text-align: center; margin-top: 8px; }
-
-  .yt-search-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 12px; background: #ff0000; color: white;
-    border: none; border-radius: 8px; padding: 8px 16px;
-    font-size: 14px; font-weight: bold; cursor: pointer;
-    text-decoration: none; transition: background 0.2s;
-  }
-  .yt-search-btn:hover { background: #cc0000; }
-
-  .week-intro { max-width: 700px; margin: 0 auto; padding: 0 16px 10px; }
-  .week-badge {
-    background: white; border: 2px solid #d4e8da; border-radius: 16px;
-    padding: 16px 20px; font-size: 15px; color: #5c7a64; text-align: center;
-  }
-  .week-badge strong { display: block; font-size: 19px; color: #3a6644; margin-bottom: 4px; }
-
-  footer {
-    text-align: center; padding: 24px; color: #888; font-size: 14px;
-    border-top: 1px solid #e0e8e4; margin-top: 20px;
-  }
-
-  /* BGM BAR */
-  .bgm-bar {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: rgba(45, 80, 58, 0.97);
-    color: white;
-    padding: 10px 16px;
-    display: flex; align-items: center; gap: 10px;
-    z-index: 1000;
-    box-shadow: 0 -2px 12px rgba(0,0,0,0.25);
-    backdrop-filter: blur(6px);
-    flex-wrap: wrap;
-  }
-  .bgm-toggle-btn {
-    background: white; color: #3d6648;
-    border: none; border-radius: 20px;
-    padding: 8px 18px;
-    font-size: 15px; font-weight: bold;
-    cursor: pointer; transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .bgm-toggle-btn.playing { background: #e74c3c; color: white; }
-  .bgm-styles { display: flex; gap: 6px; flex-wrap: wrap; }
-  .bgm-style-btn {
-    background: rgba(255,255,255,0.12);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 16px; padding: 6px 12px;
-    font-size: 13px; cursor: pointer; transition: all 0.2s;
-  }
-  .bgm-style-btn.active { background: rgba(255,255,255,0.32); border-color: white; font-weight: bold; }
-  .bgm-vol-wrap { display: flex; align-items: center; gap: 6px; }
-  .bgm-vol-wrap span { font-size: 13px; opacity: 0.8; white-space: nowrap; }
-  #bgm-vol { width: 70px; accent-color: #a8d4b4; cursor: pointer; }
-
-  @media (max-width: 480px) {
-    header h1 { font-size: 22px; }
-    .day-num { font-size: 17px; }
-    .lesson-title { font-size: 20px; }
-    .pose-name { font-size: 16px; }
-    .bgm-bar { gap: 8px; padding: 8px 12px; }
-  }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+  background: #fdf6ee; color: #3a3226;
+  font-size: 18px; line-height: 1.8; padding-bottom: 80px;
+}
+header {
+  background: linear-gradient(135deg, #7aab8a 0%, #5c9472 100%);
+  color: white; text-align: center; padding: 32px 20px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+header h1 { font-size: 28px; margin-bottom: 6px; letter-spacing: 2px; }
+header p  { font-size: 16px; opacity: 0.9; }
+.week-tabs {
+  display: flex; justify-content: center; gap: 10px;
+  padding: 20px 16px 10px; flex-wrap: wrap;
+}
+.week-tab {
+  background: white; border: 2px solid #7aab8a; color: #5c9472;
+  border-radius: 30px; padding: 10px 22px; font-size: 16px;
+  font-weight: bold; cursor: pointer; transition: all 0.2s;
+}
+.week-tab:hover, .week-tab.active { background: #7aab8a; color: white; }
+.calendar-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 8px; max-width: 700px; margin: 0 auto; padding: 16px;
+}
+.day-btn {
+  background: white; border: 2px solid #d4e8da; border-radius: 12px;
+  padding: 12px 4px; text-align: center; cursor: pointer;
+  transition: all 0.2s; min-height: 70px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.day-btn:hover { border-color: #7aab8a; background: #f0f8f2; transform: translateY(-2px); }
+.day-btn.active { background: #7aab8a; border-color: #5c9472; color: white; }
+.day-btn.completed { background: #e8f5ec; border-color: #a8d4b4; }
+.day-num   { font-size: 20px; font-weight: bold; }
+.day-label { font-size: 10px; margin-top: 2px; opacity: 0.8; }
+.day-check { font-size: 14px; margin-top: 2px; }
+.lesson-panel { max-width: 700px; margin: 0 auto 40px; padding: 0 16px; display: none; }
+.lesson-panel.visible { display: block; }
+.lesson-card { background: white; border-radius: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); overflow: hidden; }
+.lesson-header { background: linear-gradient(135deg, #7aab8a, #5c9472); color: white; padding: 24px; }
+.lesson-day   { font-size: 14px; opacity: 0.85; margin-bottom: 4px; }
+.lesson-title { font-size: 24px; font-weight: bold; margin-bottom: 8px; }
+.lesson-meta  { display: flex; gap: 16px; font-size: 14px; opacity: 0.9; }
+.lesson-body  { padding: 24px; }
+.intro-box {
+  background: #f0f8f2; border-left: 4px solid #7aab8a;
+  border-radius: 0 10px 10px 0; padding: 16px 20px; margin-bottom: 24px; font-size: 16px;
+}
+.section-title {
+  font-size: 18px; font-weight: bold; color: #5c9472;
+  border-bottom: 2px solid #d4e8da; padding-bottom: 8px; margin: 24px 0 16px;
+}
+.pose-card {
+  background: #fafffe; border: 1px solid #d4e8da;
+  border-radius: 14px; padding: 20px; margin-bottom: 16px;
+}
+.pose-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.pose-icon {
+  width: 58px; height: 58px;
+  background: linear-gradient(135deg, #e0f2e8, #c8e8d4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: #3d7a56;
+  box-shadow: 0 2px 8px rgba(60,120,80,0.18);
+}
+.pose-icon svg { width: 28px; height: 28px; fill: #3d7a56; }
+.pose-name     { font-size: 18px; font-weight: bold; color: #3a6644; }
+.pose-duration { font-size: 13px; color: #888; margin-top: 2px; }
+.steps { list-style: none; padding: 0; }
+.steps li { display: flex; gap: 12px; margin-bottom: 10px; font-size: 16px; line-height: 1.7; }
+.step-num {
+  background: #7aab8a; color: white; border-radius: 50%;
+  width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: bold; flex-shrink: 0; margin-top: 2px;
+}
+.tip-box {
+  background: #fff8e7; border: 1px solid #f0d080;
+  border-radius: 10px; padding: 14px 18px; margin-top: 14px; font-size: 15px;
+}
+.tip-box::before { content: "💡 ポイント："; font-weight: bold; color: #b8860b; }
+.caution-box {
+  background: #fff0f0; border: 1px solid #f0b0b0;
+  border-radius: 10px; padding: 14px 18px; margin-top: 10px; font-size: 15px;
+}
+.caution-box::before { content: "⚠️ 注意："; font-weight: bold; color: #c0392b; }
+.breathing-box {
+  background: #f0f4ff; border: 1px solid #b0c4f0;
+  border-radius: 10px; padding: 16px 18px; margin: 16px 0; font-size: 16px;
+}
+.breathing-box .b-title { font-weight: bold; color: #3a5ab0; margin-bottom: 8px; font-size: 17px; }
+.complete-btn {
+  display: block; width: 100%;
+  background: linear-gradient(135deg, #7aab8a, #5c9472);
+  color: white; border: none; border-radius: 14px;
+  padding: 18px; font-size: 18px; font-weight: bold;
+  cursor: pointer; margin-top: 24px; transition: all 0.2s; letter-spacing: 1px;
+}
+.complete-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(92,148,114,0.4); }
+.complete-btn.done { background: linear-gradient(135deg, #a8d4b4, #88b898); }
+.video-section { margin: 20px 0 24px; }
+.video-wrapper {
+  position: relative; padding-bottom: 56.25%; height: 0;
+  border-radius: 14px; overflow: hidden; background: #111;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.video-wrapper iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+.video-caption { font-size: 13px; color: #888; text-align: center; margin-top: 8px; }
+.yt-search-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px; background: #ff0000; color: white;
+  border: none; border-radius: 8px; padding: 8px 16px;
+  font-size: 14px; font-weight: bold; cursor: pointer;
+  text-decoration: none; transition: background 0.2s;
+}
+.yt-search-btn:hover { background: #cc0000; }
+.week-intro { max-width: 700px; margin: 0 auto; padding: 0 16px 10px; }
+.week-badge {
+  background: white; border: 2px solid #d4e8da; border-radius: 16px;
+  padding: 16px 20px; font-size: 15px; color: #5c7a64; text-align: center;
+}
+.week-badge strong { display: block; font-size: 19px; color: #3a6644; margin-bottom: 4px; }
+footer {
+  text-align: center; padding: 24px; color: #888; font-size: 14px;
+  border-top: 1px solid #e0e8e4; margin-top: 20px;
+}
+.bgm-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(45,80,58,0.97); color: white;
+  padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+  z-index: 1000; box-shadow: 0 -2px 12px rgba(0,0,0,0.25); flex-wrap: wrap;
+}
+.bgm-toggle-btn {
+  background: white; color: #3d6648; border: none; border-radius: 20px;
+  padding: 8px 18px; font-size: 15px; font-weight: bold; cursor: pointer; white-space: nowrap;
+}
+.bgm-toggle-btn.playing { background: #e74c3c; color: white; }
+.bgm-styles { display: flex; gap: 6px; flex-wrap: wrap; }
+.bgm-style-btn {
+  background: rgba(255,255,255,0.12); color: white;
+  border: 1px solid rgba(255,255,255,0.25); border-radius: 16px;
+  padding: 6px 12px; font-size: 13px; cursor: pointer;
+}
+.bgm-style-btn.active { background: rgba(255,255,255,0.32); border-color: white; font-weight: bold; }
+.bgm-vol-wrap { display: flex; align-items: center; gap: 6px; }
+.bgm-vol-wrap span { font-size: 13px; opacity: 0.8; white-space: nowrap; }
+#bgm-vol { width: 70px; accent-color: #a8d4b4; cursor: pointer; }
+@media (max-width: 480px) {
+  header h1 { font-size: 22px; }
+  .day-num { font-size: 17px; }
+  .lesson-title { font-size: 20px; }
+}
 </style>
 </head>
 <body>
@@ -271,7 +186,6 @@
   ヨガは緩やかに、楽しく続けることが大切です 🌸
 </footer>
 
-<!-- BGM BAR -->
 <div class="bgm-bar">
   <span style="font-size:20px">🎵</span>
   <button id="bgm-toggle" class="bgm-toggle-btn" onclick="toggleBGM()">▶ BGM再生</button>
@@ -288,7 +202,50 @@
 </div>
 
 <script>
-// icon値 = Material Symbols の ligature 名 (塗りつぶし版)
+// ── インラインSVGアイコン（CDN不要・常に表示） ──────────────────
+const SVG = {
+  breath: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2.5"/><path d="M9 9.5c0 0 .5 2 3 2s3-2 3-2l1 5h-2l-.5 5h-3L10 14.5H8L9 9.5z"/><path d="M5.5 13.5c-1.2.4-2 1.3-2 2.4 0 1.4 1.5 2.6 3.5 2.6M18.5 13.5c1.2.4 2 1.3 2 2.4 0 1.4-1.5 2.6-3.5 2.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+
+  rotate: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4V1.5L8.5 5 12 8.5V6a6 6 0 0 1 0 12 6 6 0 0 1-6-6H4a8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8z"/></svg>`,
+
+  open: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="4.5" r="2"/><path d="M7 8.5h10M12 8.5v4M8 20l4-7.5 4 7.5M4 11l4 1M20 11l-4 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+
+  stretch: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="4" r="2"/><path d="M3 9h18M12 9v5l-3 6M12 14l3 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+
+  twist: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="4" r="2"/><path d="M12 6v5M8 11h8M6 14c0 0 2-2 6 0s6 0 6 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M5 17l2-2M19 17l-2-2M9 20l3-5 3 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+
+  walk: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="3.5" r="2"/><path d="M10 9l-2 4 2 1M14 9l2 4-2 1M11 13l-1.5 7M13 13l1.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 9.5l5 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+
+  up: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l-4 5h3v9h2V8h3L12 3z"/><path d="M6 20h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+
+  balance: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v18M4 21h16M8 13l-3 5h6l-3-5zM16 9l-3 5h6l-3-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+
+  tree: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2 L6 10 H9 L5 16 H10 L10 22 H14 L14 16 H19 L15 10 H18 Z"/></svg>`,
+
+  sun: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+
+  moon: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>`,
+
+  strength: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h3M17 12h3M7 9h2v6H7zM15 9h2v6h-2zM9 12h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="9" y="10.5" width="6" height="3" rx="1.5"/></svg>`,
+
+  peace: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3v18M5.3 6.3l11.4 11.4M18.7 6.3L7.3 17.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+
+  heart: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21C12 21 3 14 3 8.5A4.5 4.5 0 0 1 12 6.5 4.5 4.5 0 0 1 21 8.5C21 14 12 21 12 21z"/></svg>`,
+
+  star: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.9 6.3 6.8.6-5 4.7 1.5 6.8L12 17l-6.2 3.4 1.5-6.8-5-4.7 6.8-.6z"/></svg>`,
+
+  leaf: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 17.5C5 12 8 5 19 3 19 14 14 19 6.5 17.5z"/><path d="M6.5 17.5 L12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+
+  hand: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 13V6a1.5 1.5 0 0 1 3 0v5M11 11V5a1.5 1.5 0 0 1 3 0v6M14 11V7a1.5 1.5 0 0 1 3 0v5c0 4-2 7-6 7-3 0-5.5-2-6-5l-.5-3a1.5 1.5 0 0 1 2.9-.5L8 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+
+  medal: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="15" r="6"/><path d="M12 12l1.5 3h3l-2.5 2 1 3L12 18.5 9 20l1-3-2.5-2h3z" fill="white"/><path d="M8 3l-2 4h4L8 3zM16 3l2 4h-4l2-4z"/><path d="M8 7h8v2H8z"/></svg>`,
+
+  check: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12l3.5 3.5L17 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+
+  rocket: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c0 0-5 5-5 11l3 1 2-2 2 2 3-1c0-6-5-11-5-11z"/><path d="M9 14l-2 5 2-1 1 2 2-6M15 14l2 5-2-1-1 2-2-6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="9" r="1.5" fill="white"/></svg>`,
+};
+
+// ── 動画マップ ────────────────────────────────────────────────────
 const videoMap = {
   "呼吸法":            { id:"lOzV5m-luh4", title:"【シニア塾】椅子のヨガ 呼吸で姿勢を整えよう" },
   "胸・呼吸":          { id:"lOzV5m-luh4", title:"【シニア塾】椅子のヨガ 呼吸で姿勢を整えよう" },
@@ -326,491 +283,387 @@ const videoMap = {
 const weekInfo = [
   { title:"第1週：体を目覚めさせましょう", desc:"椅子を使っても大丈夫！ まずは呼吸を整え、体の各部位をゆっくりほぐしていきます。" },
   { title:"第2週：柔軟性を高めましょう",   desc:"少しずつ体が動くようになってきます。無理をせず、気持ちいいと感じる範囲で行いましょう。" },
-  { title:"第3週：バランスと筋力を養いましょう", desc:"脚や体幹（体の中心）を少し意識した動きを取り入れます。壁や椅子を使って安全に行いましょう。" },
+  { title:"第3週：バランスと筋力を養いましょう", desc:"脚や体幹を少し意識した動きを取り入れます。壁や椅子を使って安全に行いましょう。" },
   { title:"第4週：心と体を統合しましょう", desc:"これまで練習したことを組み合わせ、心も体もリラックスした状態に整えます。" }
 ];
 
-// icon = Material Symbols ligature name
+// icon キー = SVG オブジェクトのキー
 const lessons = [
-  // === WEEK 1 ===
-  {
-    day:1, week:1, title:"深呼吸で体を目覚めさせよう", duration:"約10分", theme:"呼吸法",
-    intro:"今日はヨガの基本である「呼吸」を練習します。正しい呼吸をするだけで、体が温まり、気持ちが落ち着きます。椅子に座ったままでOKです。",
-    breathing:{ name:"腹式呼吸（はらこきゅう）", desc:"お腹を使ってゆっくり呼吸します。\n①鼻からゆっくり4秒かけて息を吸い、お腹を膨らませます。\n②2秒止めます。\n③口からゆっくり6秒かけて息を吐き、お腹をへこませます。\nこれを5〜8回繰り返しましょう。" },
+  // WEEK 1
+  { day:1, week:1, title:"深呼吸で体を目覚めさせよう", duration:"約10分", theme:"呼吸法",
+    intro:"今日はヨガの基本である「呼吸」を練習します。椅子に座ったままでOKです。",
+    breathing:{ name:"腹式呼吸", desc:"①鼻から4秒吸ってお腹を膨らませます\n②2秒止めます\n③口から6秒吐き、お腹をへこませます\n5〜8回繰り返しましょう。" },
     poses:[
-      { icon:"self_improvement", name:"椅子に座った山のポーズ", duration:"3分",
-        steps:["椅子に浅く腰かけ、背もたれに寄りかからないようにします","両足を肩幅に開き、足裏全体を床につけます","両手はひざの上に自然に置きます","背筋をまっすぐ伸ばし、頭を天井に向けてそっと引き上げるイメージで","肩の力を抜き、この姿勢で腹式呼吸を5回行います"],
-        tip:"座骨（お尻の骨）を椅子にしっかり当てると自然と背筋が伸びます", caution:"腰が痛い方はクッションを背中に当てても構いません" },
-      { icon:"rotate_right", name:"首のストレッチ", duration:"3分",
-        steps:["椅子に座ったまま、背筋を伸ばします","ゆっくりと頭を右側に傾け、右耳を右肩に近づけます（肩は上げない）","左の首筋が伸びているのを感じながら、3回ゆっくり呼吸します","元の位置に戻してから、今度は左側も同様に行います","次に顎を胸に近づけ、首の後ろを伸ばして3呼吸します","最後に頭を少し後ろに傾けて、喉を伸ばして3呼吸します"],
-        tip:"首はとてもデリケートな場所です。「気持ちいい」と感じる範囲でとめましょう", caution:"首をぐるぐる回すのは避けてください。前後左右にゆっくり傾けるだけでOKです" }
+      { icon:"breath", name:"椅子に座った山のポーズ", duration:"3分",
+        steps:["椅子に浅く腰かけ、背もたれに寄りかかりません","両足を肩幅に開き、足裏全体を床につけます","背筋をまっすぐ伸ばし、頭を天井に向けます","肩の力を抜き、腹式呼吸を5回行います"],
+        tip:"座骨をしっかり椅子に当てると自然と背筋が伸びます", caution:"腰が痛い方はクッションを背中に当てても構いません" },
+      { icon:"rotate", name:"首のストレッチ", duration:"3分",
+        steps:["頭を右側にゆっくり傾け、左の首筋を伸ばします（3呼吸）","元に戻し、今度は左側も同様に（3呼吸）","顎を胸に近づけ、首の後ろを伸ばします（3呼吸）","頭を少し後ろに傾け、喉を伸ばします（3呼吸）"],
+        tip:"「気持ちいい」と感じる範囲でとめましょう", caution:"首をぐるぐる回すのは避けてください" }
     ]
   },
-  {
-    day:2, week:1, title:"肩こりをほぐそう", duration:"約10分", theme:"肩・上半身",
-    intro:"肩こりはシニアの方に多い悩みです。今日は肩と肩甲骨周りをゆっくりほぐします。座ったままでもできます。",
-    breathing:{ name:"胸式呼吸", desc:"①鼻から息を吸いながら、胸をゆっくり広げます（4秒）\n②口から「ふーっ」とゆっくり息を吐きます（6秒）\n肩に力が入らないよう注意して5回行いましょう。" },
+  { day:2, week:1, title:"肩こりをほぐそう", duration:"約10分", theme:"肩・上半身",
+    intro:"肩と肩甲骨周りをゆっくりほぐします。座ったままでもできます。",
+    breathing:{ name:"胸式呼吸", desc:"①鼻から胸をゆっくり広げながら吸います（4秒）\n②口から「ふーっ」とゆっくり吐きます（6秒）\n5回行いましょう。" },
     poses:[
-      { icon:"autorenew", name:"肩回し", duration:"3分",
-        steps:["椅子に座り、両手をそれぞれの肩の上に置きます","息を吸いながら、両肘を前から上へゆっくり持ち上げます","上で少し止めてから、息を吐きながら後ろへ、下へと大きく円を描くように回します","この動きを5回繰り返します","今度は逆方向（後ろから前）に5回回します"],
-        tip:"肩甲骨が動いているのを感じながら行うと効果的です", caution:"痛みがある方は可動域を小さくして行ってください" },
-      { icon:"air", name:"肩甲骨寄せ（胸を開くポーズ）", duration:"3分",
-        steps:["椅子に座り、両手を背中側で組むか、組めない場合はタオルを持ちます","息を吸いながら、両肘を後ろに引き、肩甲骨をぐっと中央に寄せます","胸が開き、背中がしっかりしてくる感覚を味わいながら3秒キープ","息を吐きながらゆっくり元の位置に戻します","これを5回繰り返します"],
-        tip:"猫背改善にとても効果的です", caution:"腕を後ろに持っていく際、無理に引っ張らないようにしましょう" },
-      { icon:"accessibility_new", name:"腕を上に伸ばすポーズ", duration:"2分",
-        steps:["椅子に座り、息を吸いながら両腕をゆっくり頭の上に持ち上げます","手のひらを天井に向け、指先をできる限り上へ伸ばします","脇腹も伸びているのを感じながら3呼吸キープ","息を吐きながら、ゆっくりと腕を下ろします"],
+      { icon:"rotate", name:"肩回し", duration:"3分",
+        steps:["両手をそれぞれの肩の上に置きます","息を吸いながら、両肘を前から上へゆっくり持ち上げます","息を吐きながら後ろへ、下へと大きく円を描くように回します","5回繰り返し、次に逆方向にも5回回します"],
+        tip:"肩甲骨が動いているのを感じながら行うと効果的です", caution:"痛みがある方は可動域を小さくしてください" },
+      { icon:"open", name:"肩甲骨寄せ（胸開き）", duration:"3分",
+        steps:["両手を背中側で組みます（難しければタオルを持ちます）","息を吸いながら、両肘を後ろに引き、肩甲骨を中央に寄せます","胸が開く感覚を味わいながら3秒キープ","息を吐きながらゆっくり元に戻します。5回繰り返します"],
+        tip:"猫背改善にとても効果的です", caution:"腕を後ろに持っていく際、無理に引っ張らないように" },
+      { icon:"stretch", name:"腕を上に伸ばすポーズ", duration:"2分",
+        steps:["息を吸いながら両腕をゆっくり頭の上に持ち上げます","手のひらを天井に向け、指先を上へ伸ばします","脇腹も伸びているのを感じながら3呼吸キープ","息を吐きながらゆっくりと腕を下ろします"],
         tip:"腕が上がりにくい方は、無理せず上がる範囲まででOKです", caution:"肩に強い痛みがある方は中止してください" }
     ]
   },
-  {
-    day:3, week:1, title:"手首・腕をやさしくケアしよう", duration:"約10分", theme:"腕・手首",
-    intro:"毎日使う手や腕も、ヨガでしっかりほぐしてあげましょう。関節の動きがよくなり、日常生活がラクになります。",
-    breathing:{ name:"腹式呼吸（復習）", desc:"昨日練習した腹式呼吸を思い出しながら、まず5回ゆっくり行いましょう。\n鼻から4秒吸って→2秒止める→口から6秒吐く。" },
+  { day:3, week:1, title:"手首・腕をやさしくケアしよう", duration:"約10分", theme:"腕・手首",
+    intro:"毎日使う手や腕をヨガでほぐしましょう。関節の動きがよくなり、日常生活がラクになります。",
+    breathing:{ name:"腹式呼吸（復習）", desc:"昨日練習した腹式呼吸を5回行いましょう。\n鼻から4秒吸って→2秒止める→口から6秒吐く。" },
     poses:[
-      { icon:"pan_tool", name:"手首のウォームアップ", duration:"2分",
-        steps:["両手を胸の前で合わせ（合掌のポーズ）、ゆっくり手首を回します","右回りに5回、左回りに5回回します","次に両手を前に伸ばし、手首を上下に曲げ伸ばしします（各10回）","グーパーを繰り返します（10回）"],
+      { icon:"hand", name:"手首のウォームアップ", duration:"2分",
+        steps:["両手を胸の前で合わせ、ゆっくり手首を回します","右回りに5回、左回りに5回","両手を前に伸ばし、手首を上下に曲げ伸ばし（各10回）","グーパーを繰り返します（10回）"],
         tip:"朝起きてすぐや、家事の前後に行うとよいでしょう", caution:"手首に痛みや腫れがある場合は無理に行わないでください" },
-      { icon:"open_in_full", name:"腕を横に伸ばすポーズ（T字ポーズ）", duration:"3分",
-        steps:["椅子に座り、背筋を伸ばします","息を吸いながら、両腕をゆっくり横に広げ、肩の高さまで持ち上げます","手のひらを床に向け、指先まで意識して伸ばします","3呼吸この姿勢をキープします","息を吐きながらゆっくり腕を下ろします。3回繰り返します"],
+      { icon:"open", name:"腕を横に伸ばすポーズ（T字）", duration:"3分",
+        steps:["息を吸いながら、両腕をゆっくり横に広げ肩の高さへ","手のひらを床に向け、指先まで意識して伸ばします","3呼吸キープしてから、息を吐きながら下ろします","3回繰り返します"],
         tip:"羽を広げる鳥をイメージすると自然と姿勢がよくなります", caution:"肩より上に腕を上げる必要はありません" },
-      { icon:"back_hand", name:"腕の内側ストレッチ", duration:"3分",
-        steps:["右腕を前に伸ばし、手のひらを上に向けます","左手で右手の指先を持ち、ゆっくり下に引き下げます","腕の内側が伸びているのを感じながら3呼吸キープ","左右を交替して同様に行います"],
+      { icon:"hand", name:"腕の内側ストレッチ", duration:"3分",
+        steps:["右腕を前に伸ばし、手のひらを上に向けます","左手で右手の指先を持ち、ゆっくり下に引き下げます","腕の内側が伸びているのを感じながら3呼吸","左右交替して同様に行います"],
         tip:"腕の疲れや張りがある方に特に効果的です", caution:"痛みを感じたらすぐに止めてください" }
     ]
   },
-  {
-    day:4, week:1, title:"腰を大切にほぐそう", duration:"約12分", theme:"腰・背中",
-    intro:"腰痛は多くの方が抱える悩みです。今日は腰に負担をかけずに、やさしく腰回りをほぐします。必ず無理をしないでください。",
-    breathing:{ name:"深呼吸でリラックス", desc:"始める前に、深呼吸を3回行いましょう。\n①大きく鼻から息を吸う（5秒）\n②ゆっくり口から全部吐き出す（7秒）" },
+  { day:4, week:1, title:"腰を大切にほぐそう", duration:"約12分", theme:"腰・背中",
+    intro:"腰に負担をかけずに、やさしく腰回りをほぐします。必ず無理をしないでください。",
+    breathing:{ name:"深呼吸でリラックス", desc:"始める前に深呼吸を3回行いましょう。\n①大きく鼻から息を吸う（5秒）\n②ゆっくり口から全部吐き出す（7秒）" },
     poses:[
-      { icon:"pets", name:"椅子キャット＆カウ（猫と牛のポーズ）", duration:"4分",
-        steps:["椅子の前半分に座り、両手をひざの上に置きます","息を吸いながら、胸を前に突き出し、背中をゆっくり反らせます（牛のポーズ）","この時、顔は少し上を向いてOKです","息を吐きながら、背中をゆっくり丸め、顎を胸に引き寄せます（猫のポーズ）","これを「吸う→反る、吐く→丸める」のリズムで8〜10回繰り返します"],
-        tip:"呼吸と動きを同期させることがポイントです", caution:"腰に強い痛みがある場合は動きを小さくするか、お休みください" },
-      { icon:"sync_alt", name:"座ったまま腰ひねり", duration:"4分",
-        steps:["椅子に座り、背筋を伸ばします","息を吸って背筋を伸ばしてから、息を吐きながら上半身をゆっくり右にひねります","右手を椅子の背もたれや座面に置き、左手は右ひざの外側に添えます","無理のない範囲でひねり、3呼吸キープします","息を吸いながら正面に戻り、反対側も同様に行います"],
-        tip:"みぞおちあたりから回転させるイメージです", caution:"脊柱管狭窄症や重度の腰痛がある方は医師に相談してから行ってください" }
+      { icon:"leaf", name:"椅子キャット＆カウ（猫と牛のポーズ）", duration:"4分",
+        steps:["椅子の前半分に座り、両手をひざの上に置きます","息を吸いながら胸を前に突き出し、背中を反らせます（牛）","息を吐きながら背中を丸め、顎を胸に引き寄せます（猫）","「吸う→反る、吐く→丸める」のリズムで8〜10回繰り返します"],
+        tip:"呼吸と動きを同期させることがポイントです", caution:"腰に強い痛みがある場合は動きを小さくするかお休みください" },
+      { icon:"twist", name:"座ったまま腰ひねり", duration:"4分",
+        steps:["息を吸って背筋を伸ばしてから、息を吐きながら上半身を右にひねります","右手を椅子の背もたれに置き、左手は右ひざの外側に添えます","無理のない範囲でひねり、3呼吸キープ","息を吸いながら正面に戻り、反対側も行います"],
+        tip:"みぞおちあたりから回転させるイメージです", caution:"脊柱管狭窄症や重度の腰痛がある方は医師に相談してから" }
     ]
   },
-  {
-    day:5, week:1, title:"足首・ひざをやさしくほぐそう", duration:"約12分", theme:"下半身",
-    intro:"足首やひざの柔軟性は転倒予防にとても重要です。今日は足元をやさしくケアします。",
-    breathing:{ name:"準備の呼吸", desc:"まず3回深呼吸して体を落ち着かせましょう。背筋を伸ばして、肩の力を抜いて始めます。" },
+  { day:5, week:1, title:"足首・ひざをやさしくほぐそう", duration:"約12分", theme:"下半身",
+    intro:"足首やひざの柔軟性は転倒予防にとても重要です。足元をやさしくケアします。",
+    breathing:{ name:"準備の呼吸", desc:"3回深呼吸して体を落ち着かせましょう。" },
     poses:[
-      { icon:"directions_walk", name:"足首回し", duration:"3分",
-        steps:["椅子に座り、右足を床から少し持ち上げます","右足首をゆっくりと大きく、内側から回します（5回）","次に外側に向けて回します（5回）","左足も同様に行います","最後に両足のつま先を上に反らせ、かかとを前に押し出します（5回）"],
+      { icon:"walk", name:"足首回し", duration:"3分",
+        steps:["右足を床から少し持ち上げます","右足首をゆっくり内側から回します（5回）","外側に向けて回します（5回）","左足も同様に","最後に両足のつま先を上に反らせ、かかとを押し出します（5回）"],
         tip:"足首の柔軟性を保つことで、転倒リスクが下がります", caution:"足首に痛みや腫れがある場合は無理に動かさないでください" },
-      { icon:"hiking", name:"ひざの曲げ伸ばし（足上げ）", duration:"4分",
-        steps:["椅子に座り、背筋を伸ばします","息を吸いながら、右足をゆっくり持ち上げ、膝をまっすぐ伸ばします","太ももの前（大腿四頭筋）が働いているのを感じながら3秒キープ","息を吐きながらゆっくり下ろします","左右各10回ずつ行います"],
-        tip:"太もも前の筋肉を鍛えることで、ひざへの負担が減り、階段の上り下りが楽になります", caution:"ひざに痛みがある場合は足を低い位置でキープしてください" },
-      { icon:"arrow_upward", name:"かかと上げ（ふくらはぎのポンプ）", duration:"3分",
-        steps:["椅子に座り、両足を揃えます","息を吸いながら、かかとをゆっくり持ち上げます","息を吐きながらかかとをゆっくり下ろします","これを15〜20回繰り返します"],
-        tip:"ふくらはぎは「第二の心臓」。血流を促してむくみ予防にも効果的です", caution:"足がつりやすい方は回数を減らして行ってください" }
+      { icon:"stretch", name:"ひざの曲げ伸ばし（足上げ）", duration:"4分",
+        steps:["背筋を伸ばした状態で、右足をゆっくり持ち上げ膝をまっすぐ伸ばします","太もも前が働いているのを感じながら3秒キープ","息を吐きながらゆっくり下ろします","左右各10回ずつ行います"],
+        tip:"太もも前の筋肉を鍛えることで、ひざへの負担が減ります", caution:"ひざに痛みがある場合は足を低い位置でキープしてください" },
+      { icon:"up", name:"かかと上げ（ふくらはぎのポンプ）", duration:"3分",
+        steps:["両足を揃えます","息を吸いながらかかとをゆっくり持ち上げます","息を吐きながらかかとをゆっくり下ろします","15〜20回繰り返します"],
+        tip:"ふくらはぎは「第二の心臓」。血流を促してむくみ予防に効果的です", caution:"足がつりやすい方は回数を減らして行ってください" }
     ]
   },
-  {
-    day:6, week:1, title:"体全体をやさしく流そう", duration:"約12分", theme:"全身",
-    intro:"今週学んだ動きを組み合わせ、体全体を流すように動かします。じんわりほぐれていく感覚を楽しみましょう。",
-    breathing:{ name:"完全呼吸", desc:"お腹→胸→鎖骨の順に膨らませる「完全呼吸」に挑戦しましょう。\n①鼻から吸って、まずお腹を膨らませ②続いて胸を広げ③最後に鎖骨あたりまで満たします（8秒）\n④ゆっくり全部吐き出します（8秒）。3回行いましょう。" },
+  { day:6, week:1, title:"体全体をやさしく流そう", duration:"約12分", theme:"全身",
+    intro:"今週学んだ動きを組み合わせ、体全体を流すように動かします。",
+    breathing:{ name:"完全呼吸", desc:"お腹→胸→鎖骨の順に膨らませる「完全呼吸」に挑戦しましょう（8秒吸う→8秒吐く）。3回行いましょう。" },
     poses:[
-      { icon:"wb_sunny", name:"椅子サンサルテーション（ミニ太陽礼拝）", duration:"8分",
-        steps:["【1】椅子に座り、手を合わせて胸の前で合掌します","【2】息を吸いながら、両腕をゆっくり頭上に伸ばします","【3】息を吐きながら、上半身を前に倒し、手を足の方に伸ばします","【4】息を吸いながら、背筋を伸ばして上体を起こします","【5】息を吐きながら、腕を横に広げ、体を右にひねります","【6】息を吸いながら正面に戻り、体を左にひねります","【7】息を吐きながら、腕を下ろし合掌に戻ります","このシーケンスを3回繰り返します"],
-        tip:"動作と呼吸をしっかり合わせることで、体が温まり血流が促進されます", caution:"前屈で痛みがある場合は、前に倒す角度を浅くしてください" }
+      { icon:"sun", name:"椅子ミニ太陽礼拝", duration:"8分",
+        steps:["【1】胸の前で合掌（3呼吸）","【2】吸いながら両腕を頭上に伸ばす","【3】吐きながら上半身を前に倒す","【4】吸いながら背筋を伸ばして起き上がる","【5】吐きながら体を右にひねる","【6】吸いながら正面→吐きながら左にひねる","【7】吐きながら腕を下ろし合掌に戻る","このシーケンスを3回繰り返します"],
+        tip:"動作と呼吸をしっかり合わせることで体が温まります", caution:"前屈で痛みがある場合は前に倒す角度を浅くしてください" }
     ]
   },
-  {
-    day:7, week:1, title:"第1週の振り返り・リラックス", duration:"約15分", theme:"リラックス",
-    intro:"1週間お疲れ様でした！今日はゆっくりと体をほぐしながら、この1週間の成果を確認しましょう。",
-    breathing:{ name:"4-7-8呼吸法", desc:"①鼻から4秒かけて息を吸います\n②7秒間息を止めます\n③口から8秒かけてゆっくり吐きます\n4回行いましょう。" },
+  { day:7, week:1, title:"第1週の振り返り・リラックス", duration:"約15分", theme:"リラックス",
+    intro:"1週間お疲れ様でした！今日はゆっくりと体をほぐしながら、成果を確認しましょう。",
+    breathing:{ name:"4-7-8呼吸法", desc:"①鼻から4秒吸います\n②7秒間息を止めます\n③口から8秒かけてゆっくり吐きます\n4回行いましょう。" },
     poses:[
-      { icon:"bedtime", name:"チャイルドポーズ（前屈のやすらぎのポーズ）", duration:"4分",
-        steps:["椅子に座り、脚を少し開きます","息を吐きながら、上体をゆっくり前に倒します","両腕は膝の間かひざの上に自然に置き、背中を丸めます","頭を下げ、首の力を完全に抜きます","この姿勢でゆっくり5〜8回呼吸します","息を吸いながらゆっくり上体を起こします"],
+      { icon:"moon", name:"チャイルドポーズ（前屈のやすらぎ）", duration:"4分",
+        steps:["脚を少し開きます","息を吐きながら上体をゆっくり前に倒します","両腕は膝の間に自然に置き、背中を丸めます","頭を下げ、首の力を完全に抜きます","5〜8回ゆっくり呼吸します","息を吸いながらゆっくり起き上がります"],
         tip:"体の重みに任せて、自然にストレッチされるのを感じましょう", caution:"血圧の高い方は頭を低くしすぎないよう注意してください" },
-      { icon:"spa", name:"シャバーサナ（完全休息のポーズ）", duration:"5分",
+      { icon:"breath", name:"シャバーサナ（完全休息）", duration:"5分",
         steps:["椅子に深く腰掛け、背もたれに体を預けます","両足を肩幅に開き、足裏全体を床につけます","目を閉じ、全身の力を完全に抜きます","ただ呼吸だけに意識を向け、5分間完全にリラックスしましょう"],
-        tip:"「何もしない」ことがこのポーズの目的です", caution:"寝てしまっても大丈夫です！それだけリラックスできている証拠です" }
+        tip:"「何もしない」ことがこのポーズの目的です", caution:"寝てしまっても大丈夫です！" }
     ]
   },
-  // === WEEK 2 ===
-  {
-    day:8, week:2, title:"股関節をやさしく開こう", duration:"約12分", theme:"股関節",
-    intro:"股関節は「体の要」とも言われる大切な関節です。柔軟性を高めることで、歩行が安定し腰痛予防にもなります。",
+  // WEEK 2
+  { day:8, week:2, title:"股関節をやさしく開こう", duration:"約12分", theme:"股関節",
+    intro:"股関節の柔軟性を高めることで、歩行が安定し腰痛予防にもなります。",
     breathing:{ name:"腹式呼吸で集中", desc:"今日のレッスンを始める前に、腹式呼吸を5回行いましょう。" },
     poses:[
-      { icon:"nature", name:"椅子バタフライポーズ", duration:"4分",
-        steps:["椅子の前半分に座り、両足のかかとをくっつけ、つま先を外側に開きます","両手をひざの上に置きます","息を吸って背筋を伸ばし、息を吐きながら両ひざをゆっくり外側に開きます","蝶が羽を広げるように、ひざを上下にゆっくり動かします（10回）","開いたままで3呼吸キープし、股関節の伸びを感じます"],
+      { icon:"leaf", name:"椅子バタフライポーズ", duration:"4分",
+        steps:["両足のかかとをくっつけ、つま先を外側に開きます","両手をひざの上に置きます","息を吸って背筋を伸ばし、息を吐きながら両ひざを外側に開きます","蝶が羽を広げるようにひざを上下に動かします（10回）","開いたまま3呼吸キープし、股関節の伸びを感じます"],
         tip:"足をより体に近づけるほど股関節への刺激が強くなります", caution:"人工股関節がある方は医師に相談してから行ってください" },
-      { icon:"directions_run", name:"立ち膝上げ（バランスの準備）", duration:"4分",
-        steps:["椅子の横に立ち、片手で背もたれを軽く持ちます","背筋を伸ばし、体重を左足に移します","息を吸いながら、右ひざをゆっくり胸の方に引き上げます","3秒キープしてから、息を吐きながらゆっくり下ろします","左右各10回ずつ行います"],
+      { icon:"walk", name:"立ち膝上げ", duration:"4分",
+        steps:["椅子の横に立ち、片手で背もたれを軽く持ちます","体重を左足に移します","息を吸いながら右ひざをゆっくり胸の方に引き上げます","3秒キープしてから、息を吐きながらゆっくり下ろします","左右各10回ずつ行います"],
         tip:"お腹に少し力を入れて行うと体幹が安定します", caution:"ふらつく場合は椅子をしっかり持つか、壁を使ってください" }
     ]
   },
-  {
-    day:9, week:2, title:"背中を柔らかく伸ばそう", duration:"約12分", theme:"背中",
-    intro:"背中の筋肉が柔軟になると、姿勢がよくなり疲れにくい体になります。今日は背中全体をじっくりほぐします。",
+  { day:9, week:2, title:"背中を柔らかく伸ばそう", duration:"約12分", theme:"背中",
+    intro:"背中の筋肉が柔軟になると、姿勢がよくなり疲れにくい体になります。",
     breathing:{ name:"準備の深呼吸", desc:"3回大きく深呼吸して、背中の筋肉をほぐす準備をしましょう。" },
     poses:[
-      { icon:"pets", name:"スタンディングキャット（立ったまま猫のポーズ）", duration:"5分",
-        steps:["椅子の背もたれの前に立ち、両手を背もたれ上部に置きます","一歩後ろに下がり、腕を伸ばして上半身を床に平行にします","息を吸いながら背中を反らせ、胸を前に押し出します（牛のポーズ）","息を吐きながら背中を丸め、頭を下げ、おへそを見ます（猫のポーズ）","呼吸に合わせて8〜10回繰り返します"],
+      { icon:"leaf", name:"スタンディングキャット（椅子を使って）", duration:"5分",
+        steps:["椅子の背もたれの前に立ち、両手を背もたれ上部に置きます","一歩後ろに下がり、腕を伸ばして上半身を床に平行にします","息を吸いながら背中を反らせ、胸を前に押し出します（牛）","息を吐きながら背中を丸め、頭を下げます（猫）","8〜10回繰り返します"],
         tip:"背骨を一つひとつ動かすイメージで行うと効果的です", caution:"腰を反らせる時は無理に深くしないでください" },
-      { icon:"park", name:"サイドベンド（体側伸ばし）", duration:"4分",
-        steps:["椅子に座り、背筋を伸ばします","右腕を頭上に伸ばし、手のひらを左側に向けます","息を吐きながら、上半身を左にゆっくり傾けます","右の脇腹〜背中が伸びているのを感じながら3呼吸キープ","息を吸いながら真ん中に戻り、反対側も同様に行います"],
+      { icon:"stretch", name:"サイドベンド（体側伸ばし）", duration:"4分",
+        steps:["右腕を頭上に伸ばし、手のひらを左側に向けます","息を吐きながら上半身を左にゆっくり傾けます","右の脇腹〜背中が伸びているのを感じながら3呼吸","息を吸いながら真ん中に戻り、反対側も行います"],
         tip:"骨盤は椅子から浮かせないようにしましょう", caution:"側腹部に痛みがある場合は無理に傾けないでください" }
     ]
   },
-  {
-    day:10, week:2, title:"胸を開いて前向きになろう", duration:"約12分", theme:"胸・呼吸",
-    intro:"胸を開くポーズは呼吸を深くし、気持ちを前向きにする効果があります。猫背の改善にも役立ちます。",
-    breathing:{ name:"胸を開く呼吸", desc:"両手を胸に当て、呼吸するたびに胸が膨らんだり縮んだりするのを感じましょう。ゆっくり5回行います。" },
+  { day:10, week:2, title:"胸を開いて前向きになろう", duration:"約12分", theme:"胸・呼吸",
+    intro:"胸を開くポーズは呼吸を深くし、気持ちを前向きにする効果があります。",
+    breathing:{ name:"胸を開く呼吸", desc:"両手を胸に当て、呼吸するたびに胸が膨らんだり縮んだりするのを感じましょう。5回行います。" },
     poses:[
-      { icon:"air", name:"胸開きポーズ（コブラの椅子版）", duration:"4分",
-        steps:["椅子に座り、両手を背中側で組みます","息を吸いながら、ゆっくりと胸を前・上に突き出します","肩甲骨を中央に寄せ、肘を後ろに引きます","3〜5呼吸キープしてから、ゆっくり元に戻します。3回繰り返します"],
-        tip:"胸の中心（胸骨）から前に押し出すイメージで行うと深く開けます", caution:"首に無理な負担をかけないよう、無理に上を向かないでください" },
-      { icon:"volunteer_activism", name:"リバース合掌（逆合掌）", duration:"4分",
-        steps:["背中側で手を合わせます。難しければ両手首か手の甲を合わせてもOK","手を合わせたまま、背中のより上の方へゆっくり移動させます","胸が開き、肩甲骨が寄ってくるのを感じながら5呼吸キープ","ゆっくり手を解放します"],
-        tip:"最初は手を低い位置で合わせ、慣れてきたら少しずつ上に移動しましょう", caution:"肩や手首に違和感がある場合は無理せずに" }
+      { icon:"open", name:"胸開きポーズ", duration:"4分",
+        steps:["両手を背中側で組みます","息を吸いながら胸を前・上に突き出します","肩甲骨を中央に寄せ、肘を後ろに引きます","3〜5呼吸キープしてから、ゆっくり元に戻します。3回繰り返します"],
+        tip:"胸の中心から前に押し出すイメージで行うと深く開けます", caution:"首に無理な負担をかけないようにしましょう" },
+      { icon:"hand", name:"リバース合掌（逆合掌）", duration:"4分",
+        steps:["背中側で手を合わせます（難しければ手首か手の甲でOK）","手を合わせたまま、背中のより上の方へゆっくり移動させます","胸が開き肩甲骨が寄ってくるのを感じながら5呼吸","ゆっくり手を解放します"],
+        tip:"最初は手を低い位置で合わせ、慣れたら少しずつ上に移動しましょう", caution:"肩や手首に違和感がある場合は無理せずに" }
     ]
   },
-  {
-    day:11, week:2, title:"前屈で体の後ろ側を伸ばそう", duration:"約12分", theme:"前屈・ハムストリングス",
-    intro:"太ももの裏（ハムストリングス）や背中の後ろ側を伸ばします。血流が促進され、体が温まります。",
-    breathing:{ name:"前屈のための呼吸", desc:"前屈では「吐く息で深める」のが基本です。吐くたびに少しずつ体が前に倒れていくイメージで行いましょう。" },
+  { day:11, week:2, title:"前屈で体の後ろ側を伸ばそう", duration:"約12分", theme:"前屈・ハムストリングス",
+    intro:"太ももの裏と背中の後ろ側を伸ばします。血流が促進され、体が温まります。",
+    breathing:{ name:"前屈のための呼吸", desc:"前屈では「吐く息で深める」のが基本です。吐くたびに少しずつ体が前に倒れていくイメージで。" },
     poses:[
-      { icon:"accessibility_new", name:"椅子前屈", duration:"5分",
-        steps:["椅子に座り、脚を少し開きます","息を吸って背筋を伸ばし、次の息を吐きながら上体をゆっくり前に倒します","手は自然に足の間かひざに置き、体の重みで背中を伸ばします","首の力を完全に抜き、頭を自然に下げます","5〜8回呼吸しながら、吐くたびに少しずつ深めます","息を吸いながらゆっくり起き上がります"],
+      { icon:"stretch", name:"椅子前屈", duration:"5分",
+        steps:["息を吸って背筋を伸ばし、息を吐きながら上体をゆっくり前に倒します","手は自然に足の間かひざに置き、体の重みで背中を伸ばします","首の力を完全に抜き、頭を自然に下げます","5〜8回呼吸しながら、吐くたびに少しずつ深めます","息を吸いながらゆっくり起き上がります"],
         tip:"おへそを前に引き出すように倒すと太ももの裏が伸びます", caution:"目眩がする方はゆっくり起き上がってください" },
-      { icon:"hiking", name:"片足前屈（脚を伸ばすポーズ）", duration:"4分",
-        steps:["椅子に座り、右足を前に出して膝をまっすぐ伸ばします","息を吸って背筋を伸ばし、息を吐きながら右足に向かって上体を倒します","太ももの裏が伸びているのを感じながら3〜5呼吸キープ","左右交替して行います"],
-        tip:"足先を自分に向けて（手前に引いて）行うと、より効果的に伸ばせます", caution:"ひざは軽く曲げても同様の効果が得られます" }
+      { icon:"walk", name:"片足前屈（脚を伸ばすポーズ）", duration:"4分",
+        steps:["右足を前に出して膝をまっすぐ伸ばします","息を吐きながら右足に向かって上体を倒します","太ももの裏が伸びているのを感じながら3〜5呼吸","左右交替して行います"],
+        tip:"足先を自分に向けて行うとより効果的に伸ばせます", caution:"ひざは軽く曲げても同様の効果が得られます" }
     ]
   },
-  {
-    day:12, week:2, title:"バランス感覚を磨こう（入門）", duration:"約12分", theme:"バランス基礎",
-    intro:"バランス練習は転倒予防に直結します。今日は「怖くない」バランス練習を椅子を使いながら行います。",
-    breathing:{ name:"集中の呼吸", desc:"バランス練習前に、鼻から息を吸って、口からゆっくり吐く深呼吸を3回。吐く時に肩の力を抜いて、体の重心を感じましょう。" },
+  { day:12, week:2, title:"バランス感覚を磨こう（入門）", duration:"約12分", theme:"バランス基礎",
+    intro:"バランス練習は転倒予防に直結します。椅子を使いながら安全に行います。",
+    breathing:{ name:"集中の呼吸", desc:"鼻から息を吸って、口からゆっくり吐く深呼吸を3回。吐く時に肩の力を抜いて重心を感じましょう。" },
     poses:[
-      { icon:"park", name:"椅子ツリーポーズ（木のポーズ）", duration:"5分",
-        steps:["椅子の横に立ち、片手で背もたれを軽く持ちます","右足に体重をゆっくり移します","左足のかかとを右足の足首の内側に当てます（膝には当てないこと）","左ひざを外側に開き、体の重心を安定させます","10秒〜30秒キープしてから、反対側も行います"],
+      { icon:"tree", name:"椅子ツリーポーズ（木のポーズ）", duration:"5分",
+        steps:["椅子の横に立ち、片手で背もたれを軽く持ちます","右足に体重をゆっくり移します","左足のかかとを右足の足首の内側に当てます（膝には当てないこと）","左ひざを外側に開き、10〜30秒キープ","反対側も行います"],
         tip:"壁から50cm程度のところに立って練習すると安心です", caution:"足を膝の外側に当てることは絶対に避けてください" },
       { icon:"balance", name:"タンデムスタンス（縦に足を並べるバランス）", duration:"4分",
-        steps:["椅子か壁の横に立ちます","右足のつま先の前に左足のかかとをつけます（一本の線上に両足を置く）","この「縦並び」の姿勢で30秒バランスを保ちます","次に前後を交替して行います","各側2回ずつ行います"],
+        steps:["右足のつま先の前に左足のかかとをつけます","一本の線上に両足を置き、30秒バランスを保ちます","前後を交替して行います。各側2回ずつ"],
         tip:"目線を前の一点に固定するとバランスを保ちやすくなります", caution:"最初は必ず椅子や壁のそばで行ってください" }
     ]
   },
-  {
-    day:13, week:2, title:"股関節と脚の柔軟性を高めよう", duration:"約13分", theme:"股関節・脚",
-    intro:"歩くために大切な股関節と脚の柔軟性をさらに高めます。毎日の歩行が軽くなります。",
+  { day:13, week:2, title:"股関節と脚の柔軟性を高めよう", duration:"約13分", theme:"股関節・脚",
+    intro:"歩くために大切な股関節と脚の柔軟性をさらに高めます。",
     breathing:{ name:"リズムのある呼吸", desc:"吸う時：体を広げる・上に伸びる動き\n吐く時：体を縮める・前に倒れる動き\nこの原則を意識しながら行いましょう。" },
     poses:[
-      { icon:"directions_run", name:"ウォーキングポーズ（椅子で行進）", duration:"4分",
-        steps:["椅子に座り、背筋を伸ばします","行進するように、右ひざ・左ひざを交互にゆっくり持ち上げます","同時に腕も自然に前後に振ります","20〜30回行います"],
+      { icon:"walk", name:"椅子で行進", duration:"4分",
+        steps:["行進するように、右ひざ・左ひざを交互にゆっくり持ち上げます","同時に腕も自然に前後に振ります","20〜30回行います"],
         tip:"全身の血流を促す効果があります。テレビを見ながらでもできます", caution:"ひざの調子が悪い日は足を低めに持ち上げるだけでOKです" },
-      { icon:"sentiment_very_satisfied", name:"ライオンポーズ（ストレス解消にも！）", duration:"3分",
-        steps:["椅子に座り、少し前のめりになります","両手をひざの上に置き、指を広げます","息を大きく吸い込んで","口を大きく開け、舌を思いっきり出して、「ハァーッ」と大きく息を吐きます","3〜5回繰り返します"],
+      { icon:"peace", name:"ライオンポーズ（ストレス解消！）", duration:"3分",
+        steps:["椅子に座り、少し前のめりになります","両手をひざの上に置き、指を広げます","息を大きく吸い込んで","口を大きく開け、舌を思いっきり出して「ハァーッ」と大きく吐きます","3〜5回繰り返します"],
         tip:"顔の筋肉の緊張がほぐれ、表情が明るくなります！", caution:"周囲への配慮を忘れずに（笑）" }
     ]
   },
-  {
-    day:14, week:2, title:"第2週の振り返り・深いリラックス", duration:"約15分", theme:"全身・リラックス",
-    intro:"2週間のヨガを続けてきました！体の変化を感じられているでしょうか？今日はゆっくりと全身を流し、深くリラックスしましょう。",
-    breathing:{ name:"長い吐く息", desc:"①鼻から息を吸います（4秒）\n②口から少しずつ、細く長く吐き出します（10秒以上）\n体の全ての緊張が溶けていくのを感じましょう。5回行います。" },
+  { day:14, week:2, title:"第2週の振り返り・深いリラックス", duration:"約15分", theme:"全身・リラックス",
+    intro:"2週間のヨガを続けてきました！今日はゆっくりと全身を流し、深くリラックスしましょう。",
+    breathing:{ name:"長い吐く息", desc:"①鼻から吸います（4秒）\n②口から細く長く吐き出します（10秒以上）\n5回行います。" },
     poses:[
-      { icon:"water", name:"全身の流れポーズ", duration:"8分",
-        steps:["【首】右→左→前→後ろとゆっくり傾ける（各3秒）","【肩】大きく後ろ回しを5回","【腰】椅子に座ったまま左右にひねります（各3回）","【股関節】バタフライポーズで10回パタパタ","【足首】回しと曲げ伸ばし各10回"],
-        tip:"「全身チェックイン」として今日の体の状態を確認する習慣にしましょう", caution:"痛みのある箇所は飛ばして構いません" },
-      { icon:"cloud", name:"ヨガニドラ（覚醒した眠り）", duration:"5分",
-        steps:["椅子に背もたれに預け、目を閉じます","頭→額→目→鼻→口→顎→首→肩→腕→手→胸→お腹→腰→太もも→ひざ→ふくらはぎ→足と、各部位に意識を向けてリラックスさせます","全身を一巡したら、ただ呼吸だけに集中して静かにいます"],
-        tip:"体のスキャンをすることで、気づかなかった緊張やこりが意識できます", caution:"眠ってしまった場合は、ゆっくり目を開けてから立ち上がってください" }
+      { icon:"rotate", name:"全身の流れポーズ", duration:"8分",
+        steps:["【首】右→左→前→後ろとゆっくり傾ける（各3秒）","【肩】大きく後ろ回しを5回","【腰】左右にひねります（各3回）","【股関節】バタフライポーズで10回","【足首】回しと曲げ伸ばし各10回"],
+        tip:"「全身チェックイン」として体の状態を確認する習慣にしましょう", caution:"痛みのある箇所は飛ばして構いません" },
+      { icon:"moon", name:"ヨガニドラ（覚醒した眠り）", duration:"5分",
+        steps:["椅子に背もたれに預け、目を閉じます","頭から足先まで、各部位に意識を向けてリラックスさせます","全身を一巡したら、ただ呼吸だけに集中して静かにいます"],
+        tip:"体のスキャンをすることで、気づかなかった緊張が意識できます", caution:"眠ってしまった場合は、ゆっくり目を開けてから立ち上がってください" }
     ]
   },
-  // === WEEK 3 ===
-  {
-    day:15, week:3, title:"脚の筋力を少しずつつけよう", duration:"約13分", theme:"脚の筋力",
-    intro:"3週目は体をもう少し積極的に使います。「きつい」と感じたら休憩してください。無理なく続けることが一番大切です。",
-    breathing:{ name:"ウジャイ呼吸", desc:"喉の奥を少し狭くして、鼻から「シュー」という音を立てながら吸い→吐きます。体が温まり、動きに集中しやすくなります。3〜5回試してみましょう。" },
+  // WEEK 3
+  { day:15, week:3, title:"脚の筋力を少しずつつけよう", duration:"約13分", theme:"脚の筋力",
+    intro:"3週目は体をもう少し積極的に使います。「きつい」と感じたら休憩してください。",
+    breathing:{ name:"ウジャイ呼吸", desc:"喉の奥を少し狭くして、鼻から「シュー」という音を立てながら吸い→吐きます。3〜5回試してみましょう。" },
     poses:[
-      { icon:"fitness_center", name:"椅子スクワット（立ち座り練習）", duration:"5分",
-        steps:["椅子の前に立ち、足を肩幅に開きます","両手は前に伸ばすか、椅子の背もたれに手を添えます","息を吸いながら、ゆっくり腰を落としてほぼ椅子に腰掛ける直前で止めます（3秒）","息を吐きながら、ゆっくり立ち上がります","これを8〜10回行います"],
-        tip:"転倒予防に最も効果的な運動の一つです。毎日の習慣にしましょう", caution:"ひざがつま先より前に出ないよう注意。強い痛みがある場合は中止してください" },
-      { icon:"arrow_upward", name:"カーフレイズ（立ちかかと上げ）", duration:"3分",
+      { icon:"strength", name:"椅子スクワット（立ち座り練習）", duration:"5分",
+        steps:["椅子の前に立ち、足を肩幅に開きます","両手は前に伸ばすか、背もたれに添えます","息を吸いながらゆっくり腰を落とし、椅子に腰掛ける直前で止めます（3秒）","息を吐きながらゆっくり立ち上がります","8〜10回行います"],
+        tip:"転倒予防に最も効果的な運動の一つです", caution:"ひざがつま先より前に出ないよう注意してください" },
+      { icon:"up", name:"カーフレイズ（立ちかかと上げ）", duration:"3分",
         steps:["椅子の背もたれか壁の前に立ち、軽く触れて安定を保ちます","息を吸いながら、かかとをゆっくり持ち上げてつま先立ちになります","2秒キープ","息を吐きながらゆっくりかかとを下ろします","15〜20回行います"],
         tip:"ふくらはぎの筋力アップと血流改善に効果的です", caution:"バランスを崩さないよう、必ず支えを持って行ってください" }
     ]
   },
-  {
-    day:16, week:3, title:"体幹を意識してみよう", duration:"約13分", theme:"体幹",
-    intro:"体幹とは、お腹・背中・腰まわりの筋肉のことです。体幹が安定すると姿勢がよくなり、腰痛予防にも効果的です。",
-    breathing:{ name:"体幹を意識した呼吸", desc:"息を吐く時にお腹を少し引き込む感覚を意識しましょう。この「お腹を引き込む動作」がインナーマッスルを活性化します。5回試してみてください。" },
+  { day:16, week:3, title:"体幹を意識してみよう", duration:"約13分", theme:"体幹",
+    intro:"体幹（お腹・背中・腰まわりの筋肉）が安定すると姿勢がよくなり、腰痛予防にも効果的です。",
+    breathing:{ name:"体幹を意識した呼吸", desc:"息を吐く時にお腹を少し引き込む感覚を意識しましょう。この動作がインナーマッスルを活性化します。5回試してください。" },
     poses:[
-      { icon:"accessibility", name:"タダーサナ（山のポーズ・立位）", duration:"4分",
-        steps:["椅子の横に立ち、両足を軽く平行に揃えます","足の指を広げ、足裏全体を床に押しつけます","お腹を軽く引き込み、腰を安定させます","頭を天井に向けて伸ばし、顎を軽く引きます","この姿勢で1分間、ゆっくり呼吸します"],
+      { icon:"breath", name:"タダーサナ（山のポーズ・立位）", duration:"4分",
+        steps:["椅子の横に立ち、両足を軽く平行に揃えます","足の指を広げ、足裏全体を床に押しつけます","お腹を軽く引き込み、腰を安定させます","頭を天井に向けて伸ばし、顎を軽く引きます","1分間、ゆっくり呼吸します"],
         tip:"「ただ立っているだけ」に見えますが、全身の筋肉を整える重要なポーズです", caution:"ふらつく方は椅子に手を添えておいてください" },
-      { icon:"self_improvement", name:"椅子ボートポーズ（体幹活性化）", duration:"4分",
+      { icon:"breath", name:"椅子ボートポーズ（体幹活性化）", duration:"4分",
         steps:["椅子に浅く座り、背もたれにもたれません","お腹に少し力を入れてから、上体を少し後ろに傾けます（約15〜20度）","この姿勢を保ちながら3〜5回呼吸します","余裕があれば片足を床から少し浮かせます"],
-        tip:"体幹（特にお腹周り）に力が入っているのを感じながら行いましょう", caution:"腰が丸まらないよう注意。腰痛のある方は背もたれに寄りかかって行ってください" }
+        tip:"体幹に力が入っているのを感じながら行いましょう", caution:"腰が丸まらないよう注意してください" }
     ]
   },
-  {
-    day:17, week:3, title:"上半身をもう少し強化しよう", duration:"約13分", theme:"上半身の筋力",
-    intro:"日常生活では腕の力も必要です。荷物を持ったり、立ち上がったりする動作を楽にするための練習です。",
+  { day:17, week:3, title:"上半身をもう少し強化しよう", duration:"約13分", theme:"上半身の筋力",
+    intro:"荷物を持ったり、立ち上がったりする動作を楽にするための練習です。",
     breathing:{ name:"力を込める時の呼吸", desc:"力を使う動作では息を「吐きながら力を込める」のが基本です。今日は特にこの呼吸を意識しましょう。" },
     poses:[
-      { icon:"fitness_center", name:"ウォールプッシュアップ（壁を使った腕立て）", duration:"4分",
-        steps:["壁から30〜40cmほど離れて立ち、両手を肩幅で壁につけます","体を斜めにまっすぐ保ちます","息を吸いながら、体をゆっくり壁に近づけます","鼻が壁に近づいたら、息を吐きながらゆっくり元に戻します","10〜12回行います"],
-        tip:"壁から足を離すほど負荷が上がります。最初は壁に近くて大丈夫です", caution:"手首や肘に痛みがある方は行わないでください" },
-      { icon:"autorenew", name:"アームサークル（肩の強化）", duration:"4分",
-        steps:["椅子に座り、両腕を横に広げます","肘をやや曲げ、小さな円を描くように前回りで回します（20回）","方向を変えて後ろ回りでも20回","次に腕を少し上げて同様に行います"],
+      { icon:"strength", name:"ウォールプッシュアップ（壁を使った腕立て）", duration:"4分",
+        steps:["壁から30〜40cmほど離れて立ち、両手を肩幅で壁につけます","体を斜めにまっすぐ保ちます","息を吸いながら体をゆっくり壁に近づけます","息を吐きながらゆっくり元に戻します","10〜12回行います"],
+        tip:"壁から足を離すほど負荷が上がります", caution:"手首や肘に痛みがある方は行わないでください" },
+      { icon:"rotate", name:"アームサークル（肩の強化）", duration:"4分",
+        steps:["両腕を横に広げます","肘をやや曲げ、小さな円を描くように前回りで回します（20回）","方向を変えて後ろ回りでも20回","次に腕を少し上げて同様に行います"],
         tip:"肩まわりの血流が良くなり、肩こり解消にも効果的です", caution:"肩に強い痛みがある場合は中止してください" }
     ]
   },
-  {
-    day:18, week:3, title:"バランスをさらに磨こう", duration:"約13分", theme:"バランス強化",
-    intro:"先週よりも少しバランス練習を深めます。転倒予防のために最も大切な練習です。焦らず、一つひとつ丁寧に行いましょう。",
-    breathing:{ name:"集中力を高める呼吸", desc:"目を閉じて5回深呼吸しましょう。呼吸だけに意識を向けることで、集中力が高まりバランスが取りやすくなります。" },
+  { day:18, week:3, title:"バランスをさらに磨こう", duration:"約13分", theme:"バランス強化",
+    intro:"先週よりも少しバランス練習を深めます。転倒予防のために最も大切な練習です。",
+    breathing:{ name:"集中力を高める呼吸", desc:"目を閉じて5回深呼吸しましょう。呼吸だけに意識を向けることで集中力が高まります。" },
     poses:[
-      { icon:"man", name:"片足立ち（フラミンゴポーズ）", duration:"5分",
-        steps:["椅子の横か壁の前に立ちます","右手で背もたれや壁に軽く触れます","ゆっくりと左足に体重を移し、右足をほんの少し浮かせます","10〜30秒バランスをキープします","左右交替して行います（各2〜3回）"],
-        tip:"目線を前の一点（床から2〜3m前の点）に固定すると安定します", caution:"足を高く上げる必要はありません。少し浮かせるだけで十分です" },
-      { icon:"directions_walk", name:"ヒールトゥーウォーキング（綱渡り歩き）", duration:"4分",
-        steps:["壁か椅子の横で安全を確認します","右足のかかとの前に、左足のつま先をつけるように歩きます","綱渡りのイメージで、一直線上をゆっくり歩きます","4〜5歩進んで向きを変え、戻ります","3〜4往復行います"],
-        tip:"これは「バランス検査」にも使われる重要な動作です。毎日続けることで確実に改善します", caution:"必ず壁や椅子のそばで行ってください" }
+      { icon:"balance", name:"片足立ち（フラミンゴポーズ）", duration:"5分",
+        steps:["椅子の横か壁の前に立ちます","右手で背もたれや壁に軽く触れます","ゆっくりと左足に体重を移し、右足をほんの少し浮かせます","10〜30秒バランスをキープ","左右交替して行います（各2〜3回）"],
+        tip:"目線を前の一点に固定すると安定します", caution:"足を高く上げる必要はありません" },
+      { icon:"walk", name:"ヒールトゥーウォーキング（綱渡り歩き）", duration:"4分",
+        steps:["壁か椅子の横で安全を確認します","右足のかかとの前に左足のつま先をつけるように歩きます","綱渡りのイメージで一直線上をゆっくり歩きます","4〜5歩進んで向きを変え、戻ります。3〜4往復"],
+        tip:"これは「バランス検査」にも使われる重要な動作です", caution:"必ず壁や椅子のそばで行ってください" }
     ]
   },
-  {
-    day:19, week:3, title:"股関節を強化しよう", duration:"約13分", theme:"股関節の筋力",
+  { day:19, week:3, title:"股関節を強化しよう", duration:"約13分", theme:"股関節の筋力",
     intro:"股関節まわりの筋肉を鍛えることで、歩行が安定し、腰痛や膝痛の予防にもなります。",
-    breathing:{ name:"準備の腹式呼吸", desc:"5回の腹式呼吸で体を準備しましょう。特に息を吐く時にお腹を引き込み、体の中心を安定させます。" },
+    breathing:{ name:"準備の腹式呼吸", desc:"5回の腹式呼吸で体を準備しましょう。" },
     poses:[
-      { icon:"sports_gymnastics", name:"椅子クラムシェル（貝のポーズ）", duration:"4分",
-        steps:["椅子に座り、足の裏をくっつけて菱形の形にします","両手でひざを軽く押さえます（動きに抵抗を加える）","息を吐きながら、手の抵抗に逆らってひざを開きます","3秒キープしてから、息を吸いながら元に戻します","15〜20回行います"],
+      { icon:"leaf", name:"椅子クラムシェル（貝のポーズ）", duration:"4分",
+        steps:["足の裏をくっつけて菱形の形にします","両手でひざを軽く押さえます（抵抗を加える）","息を吐きながら、手の抵抗に逆らってひざを開きます","3秒キープしてから、息を吸いながら元に戻します","15〜20回行います"],
         tip:"お尻の横の筋肉（中殿筋）が働いているのを感じましょう", caution:"股関節から動かすことを意識してください" },
-      { icon:"sports_martial_arts", name:"立ちサイドキック（脚の横上げ）", duration:"4分",
-        steps:["椅子の後ろに立ち、両手で背もたれを持ちます","体を安定させ、右足をゆっくり横に上げます","3秒キープしてからゆっくり下ろします","10回行ったら左足に切り替えます"],
-        tip:"お尻の外側の筋肉を意識して動かしましょう", caution:"骨盤が横に傾かないように体をまっすぐ保つことが大切です" }
+      { icon:"stretch", name:"立ちサイドキック（脚の横上げ）", duration:"4分",
+        steps:["椅子の後ろに立ち、両手で背もたれを持ちます","右足をゆっくり横に上げます","3秒キープしてからゆっくり下ろします","10回行ったら左足に切り替えます"],
+        tip:"お尻の外側の筋肉を意識して動かしましょう", caution:"骨盤が横に傾かないよう体をまっすぐ保つことが大切です" }
     ]
   },
-  {
-    day:20, week:3, title:"全身を使った動きにチャレンジ", duration:"約15分", theme:"全身運動",
-    intro:"今日は全身をつなげた動きをします。組み合わせることで体全体のコーディネーション（連携）が養われます。",
-    breathing:{ name:"エネルギーを高める呼吸", desc:"①鼻から勢いよく吸います（2秒）\n②「ハッ！」と短く勢いよく吐きます\nこれを5〜10回繰り返すと体が温まります。（血圧が高い方は普通の深呼吸にしてください）" },
+  { day:20, week:3, title:"全身を使った動きにチャレンジ", duration:"約15分", theme:"全身運動",
+    intro:"今日は全身をつなげた動きをします。体全体のコーディネーションが養われます。",
+    breathing:{ name:"エネルギーを高める呼吸", desc:"①鼻から勢いよく吸います（2秒）②「ハッ！」と短く勢いよく吐きます\nこれを5〜10回（血圧が高い方は普通の深呼吸にしてください）" },
     poses:[
-      { icon:"surfing", name:"椅子サーフィンポーズ（全身バランス）", duration:"5分",
-        steps:["椅子に座り、両足を肩幅に開きます","息を吸いながら両腕を頭上に伸ばします","息を吐きながら右腕を前・左腕を後ろに回し、上半身を軽くひねります","同時に視線も右腕の方向に向けます","息を吸いながら戻り、反対側も行います","左右交替で10回ずつ行います"],
+      { icon:"sun", name:"椅子サーフィンポーズ", duration:"5分",
+        steps:["両足を肩幅に開きます","息を吸いながら両腕を頭上に伸ばします","息を吐きながら右腕を前・左腕を後ろに回し、上半身を軽くひねります","視線も右腕の方向に向けます","息を吸いながら戻り、反対側も行います。左右10回ずつ"],
         tip:"全身を使って動きましょう", caution:"目が回りやすい方はゆっくり行ってください" },
       { icon:"balance", name:"カウンターバランスポーズ", duration:"5分",
-        steps:["椅子の横に立ち、一方の手で背もたれを軽く持ちます","右足を後ろに引き、同時に左腕を前に伸ばします","体が弓なりになるのを感じながら3呼吸キープ","反対（左足を後ろ、右腕を前）も行います","各3回ずつ"],
-        tip:"体の対角線を意識した動きは、日常の動作（歩行）の改善に直結します", caution:"バランスを崩しそうになったら、すぐに両足で立て直してください" }
+        steps:["椅子の横に立ち、一方の手で背もたれを軽く持ちます","右足を後ろに引き、同時に左腕を前に伸ばします","体が弓なりになるのを感じながら3呼吸キープ","反対側（左足後ろ・右腕前）も行います。各3回"],
+        tip:"体の対角線を意識した動きは歩行の改善に直結します", caution:"バランスを崩しそうになったらすぐに両足で立て直してください" }
     ]
   },
-  {
-    day:21, week:3, title:"第3週の振り返り・深い呼吸とリラックス", duration:"約15分", theme:"統合・リラックス",
-    intro:"3週間、本当によく続けられました！今日はゆっくりと振り返りながらリラックスします。",
-    breathing:{ name:"ボックス呼吸（スクエア呼吸）", desc:"①4秒で吸う→②4秒止める→③4秒で吐く→④4秒止める\nこれを5回繰り返しましょう。" },
+  { day:21, week:3, title:"第3週の振り返り・リラックス", duration:"約15分", theme:"統合・リラックス",
+    intro:"3週間、本当によく続けられました！ゆっくりと振り返りながらリラックスします。",
+    breathing:{ name:"ボックス呼吸", desc:"①4秒で吸う→②4秒止める→③4秒で吐く→④4秒止める\nこれを5回繰り返しましょう。" },
     poses:[
-      { icon:"checklist", name:"第3週ベストポーズ復習", duration:"8分",
-        steps:["【①椅子スクワット】ゆっくり5回","【②片足立ち】各足15秒×2回","【③胸を開くポーズ】3呼吸×2回","【④腰のひねり】左右各3回","【⑤体側伸ばし】左右各3呼吸"],
-        tip:"お気に入りのポーズは何でしたか？特に体が変わったと感じた動きを大切にしましょう", caution:"焦らず、確認しながらゆっくり行いましょう" },
-      { icon:"favorite", name:"感謝のポーズ（リラックス瞑想）", duration:"5分",
-        steps:["椅子に楽に座り、目を閉じます","3回深呼吸して、体を完全にリラックスさせます","今週ヨガを続けた自分を心の中でほめましょう","体の各部位に「ありがとう」と心の中で言いながら意識を向けます","呼吸だけに意識を向けて、5分間静かにいます"],
+      { icon:"star", name:"第3週ベストポーズ復習", duration:"8分",
+        steps:["【①椅子スクワット】ゆっくり5回","【②片足立ち】各足15秒×2回","【③胸開きポーズ】3呼吸×2回","【④腰のひねり】左右各3回","【⑤体側伸ばし】左右各3呼吸"],
+        tip:"お気に入りのポーズは何でしたか？", caution:"焦らず確認しながらゆっくり行いましょう" },
+      { icon:"heart", name:"感謝のポーズ（瞑想）", duration:"5分",
+        steps:["椅子に楽に座り、目を閉じます","3回深呼吸して体を完全にリラックスさせます","今週ヨガを続けた自分を心の中でほめましょう","体の各部位に「ありがとう」と心の中で言いながら意識を向けます","呼吸だけに意識を向けて5分間静かにいます"],
         tip:"ヨガは体のためだけでなく、心のためでもあります", caution:"感情が湧いてきても、そっと手放して呼吸に意識を戻してください" }
     ]
   },
-  // === WEEK 4 ===
-  {
-    day:22, week:4, title:"呼吸と動きを深くつなげよう", duration:"約15分", theme:"呼吸と動きの統合",
-    intro:"最終週です。これまでに培った呼吸・柔軟性・筋力・バランスを全て組み合わせます。",
-    breathing:{ name:"吸う＝広げる、吐く＝縮める", desc:"吸う時：体を広げる・上に伸びる動き\n吐く時：体を縮める・前に倒れる動き\nこの原則を意識しながら行いましょう。" },
+  // WEEK 4
+  { day:22, week:4, title:"呼吸と動きを深くつなげよう", duration:"約15分", theme:"呼吸と動きの統合",
+    intro:"最終週です。これまでの呼吸・柔軟性・筋力・バランスを全て組み合わせます。",
+    breathing:{ name:"吸う＝広げる、吐く＝縮める", desc:"この原則を意識しながら行いましょう。" },
     poses:[
-      { icon:"wb_sunny", name:"サンライズシークエンス（朝日のシーケンス）", duration:"8分",
-        steps:["【1 合掌】胸の前で手を合わせ、3呼吸","【2 腕上げ】吸いながら両腕を頭上へ","【3 前屈】吐きながら上体を前へ倒す","【4 起き上がり】吸いながらゆっくり起き上がる","【5 右ひねり】吐きながら体を右に回す","【6 左ひねり】吸いながら正面→吐きながら左へ","【7 胸開き】吸いながら両腕を後ろに広げる","【8 合掌に戻る】吐きながら手を胸前に","このシーケンスを3回ゆっくり繰り返します"],
-        tip:"流れを覚えたら、呼吸のリズムだけを頼りに動いてみましょう", caution:"急がなくて大丈夫。ゆっくり丁寧に、自分のペースで" }
+      { icon:"sun", name:"サンライズシークエンス", duration:"8分",
+        steps:["【1】胸前で合掌・3呼吸","【2】吸いながら両腕を頭上へ","【3】吐きながら上体を前へ倒す","【4】吸いながらゆっくり起き上がる","【5】吐きながら体を右に回す","【6】吸いながら正面→吐きながら左へ","【7】吸いながら両腕を後ろに広げる","【8】吐きながら合掌に戻る","3回ゆっくり繰り返します"],
+        tip:"流れを覚えたら、呼吸のリズムだけを頼りに動いてみましょう", caution:"ゆっくり丁寧に、自分のペースで" }
     ]
   },
-  {
-    day:23, week:4, title:"柔軟性の総仕上げ", duration:"約15分", theme:"全身柔軟性",
-    intro:"1ヶ月間で柔軟性はどのくらい上がりましたか？今日は全身をゆっくり伸ばして、1ヶ月の成果を感じましょう。",
-    breathing:{ name:"リリース呼吸", desc:"吸う時：体に力を込める\n吐く時：すべての力を手放す\nこれを5回行いましょう。" },
+  { day:23, week:4, title:"柔軟性の総仕上げ", duration:"約15分", theme:"全身柔軟性",
+    intro:"1ヶ月間で柔軟性はどのくらい上がりましたか？今日は全身をゆっくり伸ばして成果を感じましょう。",
+    breathing:{ name:"リリース呼吸", desc:"吸う時：体に力を込める\n吐く時：すべての力を手放す\n5回行いましょう。" },
     poses:[
-      { icon:"accessibility_new", name:"全身ストレッチシーケンス", duration:"10分",
-        steps:["【首】前後左右に各3秒ずつゆっくり傾ける","【肩・腕】腕を頭上に伸ばして5呼吸","【体側】左右各5呼吸で伸ばす","【前屈】椅子前屈で8呼吸","【腰ひねり】左右各5呼吸","【股関節】バタフライポーズで10呼吸","【太もも裏】片足前屈を左右各5呼吸","【足首】回しと曲げ伸ばし各10回"],
-        tip:"体の「タイトな部分」に特に時間をかけてあげましょう", caution:"柔軟性は毎日少しずつ変わります。昨日よりもできることに注目しましょう" }
+      { icon:"leaf", name:"全身ストレッチシーケンス", duration:"10分",
+        steps:["【首】前後左右に各3秒ずつ","【肩・腕】腕を頭上に伸ばして5呼吸","【体側】左右各5呼吸で伸ばす","【前屈】椅子前屈で8呼吸","【腰ひねり】左右各5呼吸","【股関節】バタフライで10呼吸","【太もも裏】片足前屈を左右各5呼吸","【足首】回しと曲げ伸ばし各10回"],
+        tip:"体の「タイトな部分」に特に時間をかけてあげましょう", caution:"昨日よりもできることに注目しましょう" }
     ]
   },
-  {
-    day:24, week:4, title:"バランスと筋力の総仕上げ", duration:"約15分", theme:"バランスと筋力",
-    intro:"転倒予防のための「バランス」と「筋力」の集大成です。今日まで練習してきた成果を確かめましょう。",
-    breathing:{ name:"コアブレス", desc:"息を吐きながらお腹を引き込む「コアブレス」を5回行いましょう。この練習だけで体幹が安定します。" },
+  { day:24, week:4, title:"バランスと筋力の総仕上げ", duration:"約15分", theme:"バランスと筋力",
+    intro:"転倒予防のための集大成です。練習してきた成果を確かめましょう。",
+    breathing:{ name:"コアブレス", desc:"息を吐きながらお腹を引き込む「コアブレス」を5回行いましょう。" },
     poses:[
-      { icon:"emoji_events", name:"ベストバランスシーケンス", duration:"10分",
-        steps:["【片足立ち】各足30秒（できる方は目をつぶって）","【ヒールトゥー歩き】5往復","【椅子スクワット】10回","【カーフレイズ（立ち）】15回","【サイドキック】各足10回","各動作の間に少し休憩を入れても構いません"],
+      { icon:"medal", name:"ベストバランスシーケンス", duration:"10分",
+        steps:["【片足立ち】各足30秒","【ヒールトゥー歩き】5往復","【椅子スクワット】10回","【カーフレイズ】15回","【サイドキック】各足10回","各動作の間に少し休憩を入れても構いません"],
         tip:"できるようになったことを一つひとつ確認しながら行いましょう", caution:"体調が悪い日は軽いメニューに切り替えてください" }
     ]
   },
-  {
-    day:25, week:4, title:"心と体を整える深い瞑想", duration:"約15分", theme:"瞑想・マインドフルネス",
+  { day:25, week:4, title:"心と体を整える深い瞑想", duration:"約15分", theme:"瞑想・マインドフルネス",
     intro:"ヨガは体だけでなく、心を整える実践でもあります。今日は少し長めに瞑想の時間を設けます。",
-    breathing:{ name:"ナーディショーダナ（片鼻呼吸）", desc:"①右手の親指で右の鼻孔を閉じ、左鼻から息を吸います（4秒）\n②薬指で左鼻孔も閉じ（両方閉じる）2秒止めます\n③親指を離して右鼻から息を吐きます（6秒）\nこれを5サイクル行います。" },
+    breathing:{ name:"ナーディショーダナ（片鼻呼吸）", desc:"①右手の親指で右鼻孔を閉じ、左鼻から4秒吸います\n②両方閉じて2秒止めます\n③右鼻から6秒吐きます\n5サイクル行います。" },
     poses:[
-      { icon:"psychology", name:"マインドフルネス瞑想", duration:"10分",
-        steps:["椅子に背筋を伸ばして座り、目を閉じます","手をひざの上に置き、手のひらを上に向けます","呼吸だけに意識を向けます","思考が浮かんできたら、そっと「呼吸に戻る」と心の中で言います","10分間続けます。タイマーをセットしておくと安心です"],
+      { icon:"peace", name:"マインドフルネス瞑想", duration:"10分",
+        steps:["椅子に背筋を伸ばして座り、目を閉じます","手をひざの上に置き、手のひらを上に向けます","呼吸だけに意識を向けます","思考が浮かんできたら、そっと「呼吸に戻る」と心の中で言います","10分間続けます（タイマーをセットすると安心です）"],
         tip:"「雑念が出る＝失敗」ではありません。気づいて戻ることを繰り返すこと自体が練習です", caution:"眠ってしまった場合は、ゆっくり目を開けてから立ち上がってください" }
     ]
   },
-  {
-    day:26, week:4, title:"全身を深くリリースしよう", duration:"約15分", theme:"深いストレッチ",
-    intro:"1ヶ月間、毎日頑張ってきた体をいたわりながら、深くほぐします。今日は「受け取る」だけでOKです。",
+  { day:26, week:4, title:"全身を深くリリースしよう", duration:"約15分", theme:"深いストレッチ",
+    intro:"1ヶ月間、頑張ってきた体をいたわりながら、深くほぐします。",
     breathing:{ name:"受け取る呼吸", desc:"息を吸う時：「体に良いものを取り込む」イメージ\n息を吐く時：「疲れや緊張が出ていく」イメージ\nゆっくり5回行いましょう。" },
     poses:[
-      { icon:"spa", name:"深い前屈リリース", duration:"5分",
-        steps:["椅子に座り、脚を少し開きます","ゆっくりと上体を前に倒し、両腕を足の間に落とします","目を閉じ、呼吸のたびに少しずつほぐれていくのを感じます","5分間この姿勢でリラックスします","起き上がる時は非常にゆっくりと"],
-        tip:"「受動的前屈」は、能動的に動くよりも深いリリースをもたらすことがあります", caution:"血圧の高い方は1〜2分にとどめてください" },
-      { icon:"air", name:"胸の深いオープニング", duration:"5分",
-        steps:["椅子に座り、両手を背もたれの端かひざの上に置きます","息を吸いながら胸をゆっくり前に突き出し、肩甲骨を寄せます","この姿勢で目を閉じ、5〜8回ゆっくり呼吸します"],
+      { icon:"stretch", name:"深い前屈リリース", duration:"5分",
+        steps:["脚を少し開きます","ゆっくりと上体を前に倒し、両腕を足の間に落とします","目を閉じ、呼吸のたびに少しずつほぐれていくのを感じます","5分間この姿勢でリラックスします","起き上がる時は非常にゆっくりと"],
+        tip:"「受動的前屈」は能動的に動くよりも深いリリースをもたらします", caution:"血圧の高い方は1〜2分にとどめてください" },
+      { icon:"open", name:"胸の深いオープニング", duration:"5分",
+        steps:["両手を背もたれの端かひざの上に置きます","息を吸いながら胸をゆっくり前に突き出し、肩甲骨を寄せます","目を閉じ、5〜8回ゆっくり呼吸します"],
         tip:"肺が十分に広がることで、酸素が体の隅々に届きます", caution:"首に無理な負担がかからないよう、自然な位置を保ちましょう" }
     ]
   },
-  {
-    day:27, week:4, title:"1ヶ月の集大成・全身ヨガ", duration:"約15分", theme:"集大成",
-    intro:"いよいよ1ヶ月の締めくくりが近づいてきました。1ヶ月間のエッセンスを詰め込んだフルシーケンスを行います！",
-    breathing:{ name:"1ヶ月間の呼吸法おさらい", desc:"①腹式呼吸（5回）\n②完全呼吸（お腹→胸→鎖骨）（3回）\n③4-7-8呼吸（3回）\n今日はこの3種類を行ってからスタートしましょう。" },
+  { day:27, week:4, title:"1ヶ月の集大成・全身ヨガ", duration:"約15分", theme:"集大成",
+    intro:"1ヶ月間のエッセンスを詰め込んだフルシーケンスを行います！",
+    breathing:{ name:"1ヶ月間の呼吸法おさらい", desc:"①腹式呼吸（5回）②完全呼吸（3回）③4-7-8呼吸（3回）\nこの3種類を行ってからスタートしましょう。" },
     poses:[
-      { icon:"emoji_events", name:"グランドフィナーレシーケンス", duration:"12分",
-        steps:["【準備】山のポーズで立って、5呼吸","【1】両腕を頭上に伸ばす（吸う）→前屈（吐く）→起き上がる（吸う）","【2】右ひねり（吐く）→正面（吸う）→左ひねり（吐く）","【3】胸開きポーズ5呼吸","【4】片足立ち（右30秒・左30秒）","【5】椅子スクワット10回","【6】バタフライ（股関節）10回","【7】体側ストレッチ左右各3呼吸","【8】全身前屈5呼吸","【9】シャバーサナ（完全休息）3分"],
-        tip:"1ヶ月前には難しかった動きが、今日はスムーズにできるはずです", caution:"どんなペースでも、どんな形でも構いません" }
+      { icon:"medal", name:"グランドフィナーレシーケンス", duration:"12分",
+        steps:["【準備】山のポーズで立って5呼吸","【1】両腕を頭上に→前屈→起き上がる","【2】右ひねり→正面→左ひねり","【3】胸開きポーズ5呼吸","【4】片足立ち（右30秒・左30秒）","【5】椅子スクワット10回","【6】バタフライ10回","【7】体側ストレッチ左右各3呼吸","【8】全身前屈5呼吸","【9】シャバーサナ3分"],
+        tip:"1ヶ月前には難しかった動きが今日はスムーズにできるはずです", caution:"どんなペースでも、どんな形でも構いません" }
     ]
   },
-  {
-    day:28, week:4, title:"🎉 1ヶ月修了おめでとう！", duration:"約15分", theme:"卒業・感謝",
+  { day:28, week:4, title:"🎉 1ヶ月修了おめでとう！", duration:"約15分", theme:"卒業・感謝",
     intro:"1ヶ月間、毎日ヨガを続けてきた自分に、心からの拍手を贈りましょう！",
     breathing:{ name:"喜びの呼吸", desc:"息を吸いながら「私はよくやった」\n息を吐きながら「ありがとう」\nこれをゆっくり10回繰り返してください。" },
     poses:[
-      { icon:"favorite", name:"今日のベストポーズを自由に", duration:"8分",
+      { icon:"heart", name:"今日のベストポーズを自由に", duration:"8分",
         steps:["この1ヶ月で「一番好きだったポーズ」を自分で選んで行います","時間は自由です。気持ちよいと感じる時間だけ好きなポーズをしましょう","呼吸と体の感覚を丁寧に感じながら行います"],
         tip:"ヨガは「正しくやること」よりも「気持ちよくやること」が大切です", caution:"特にありません。今日は自分を信じて！" },
-      { icon:"volunteer_activism", name:"感謝のシャバーサナ", duration:"5分",
-        steps:["椅子に背もたれに深く寄りかかり、目を閉じます","全身の力を抜きます","この1ヶ月間続けてきた自分の体・心・努力に「ありがとう」と伝えます","これからも健康で豊かな毎日が続くようにという気持ちで、5分間静かにいます"],
+      { icon:"heart", name:"感謝のシャバーサナ", duration:"5分",
+        steps:["椅子に背もたれに深く寄りかかり、目を閉じます","全身の力を抜きます","この1ヶ月続けてきた自分の体・心・努力に「ありがとう」と伝えます","5分間静かにいます"],
         tip:"ここがゴールではなく、スタートです。来月もぜひヨガを続けてください 🌿", caution:"感動したら泣いても大丈夫。それは体と心がつながった証拠です" }
     ]
   },
-  {
-    day:29, week:4, title:"継続のためのミニヨガ", duration:"約10分", theme:"継続",
-    intro:"1ヶ月のプログラムを終えても、ヨガを続けることが大切です。毎日でも取り組める「ミニヨガ」を練習しましょう。",
+  { day:29, week:4, title:"継続のためのミニヨガ", duration:"約10分", theme:"継続",
+    intro:"毎日でも取り組める「ミニヨガ」を練習しましょう。",
     breathing:{ name:"腹式呼吸", desc:"5回の腹式呼吸で始めましょう。" },
     poses:[
-      { icon:"check_circle", name:"5分ミニヨガ（毎日できるルーティン）", duration:"5分",
+      { icon:"check", name:"5分ミニヨガ（毎日のルーティン）", duration:"5分",
         steps:["深呼吸3回","首・肩ほぐし（各1分）","腰ひねり左右各3回","足首回し各10回","片足立ち各15秒","締めの深呼吸3回"],
-        tip:"朝起きてすぐ、テレビを見ながら、お風呂の後など、取り込みやすい時間に行いましょう", caution:"「完璧にやらなければ」と思わないことが継続のコツです" }
+        tip:"朝起きてすぐ、テレビを見ながら、お風呂の後など気軽に行いましょう", caution:"「完璧にやらなければ」と思わないことが継続のコツです" }
     ]
   },
-  {
-    day:30, week:4, title:"体を労わる時間", duration:"約10分", theme:"リカバリー",
-    intro:"今日は特に「疲れをとる」ことに集中します。ゆっくりとほぐして、明日への英気を養いましょう。",
+  { day:30, week:4, title:"体を労わる時間", duration:"約10分", theme:"リカバリー",
+    intro:"今日は特に「疲れをとる」ことに集中します。",
     breathing:{ name:"4-7-8呼吸", desc:"4秒吸う→7秒止める→8秒吐く、を4回行いましょう。" },
     poses:[
-      { icon:"healing", name:"リカバリーストレッチ", duration:"7分",
+      { icon:"heart", name:"リカバリーストレッチ", duration:"7分",
         steps:["首をゆっくり右・左・前に傾ける（各5秒）","肩を大きく後ろ回しで10回","腕を頭上に伸ばして5呼吸","椅子前屈5呼吸","足首回し各10回","最後に目を閉じて腹式呼吸5回"],
         tip:"「疲れたからこそ動く」——これがヨガ的な考え方です", caution:"特に気持ちいいポーズだけ行ってください" }
     ]
   },
-  {
-    day:31, week:4, title:"来月に向けての準備", duration:"約10分", theme:"次へのステップ",
+  { day:31, week:4, title:"来月に向けての準備", duration:"約10分", theme:"次へのステップ",
     intro:"これからもヨガを続けるために、新しいポーズへの挑戦意欲を持ちましょう！",
     breathing:{ name:"元気の呼吸", desc:"鼻から力強く吸って、口から「ハーッ」と出し切る深呼吸を5回行いましょう。" },
     poses:[
-      { icon:"rocket_launch", name:"ネクストステップ準備シーケンス", duration:"7分",
+      { icon:"rocket", name:"ネクストステップ準備シーケンス", duration:"7分",
         steps:["全ての呼吸法を1回ずつ復習（腹式・完全・4-7-8）","グランドフィナーレシーケンスのミニ版を行います","今月一番成長を感じたポーズを2〜3個、じっくりと行います","来月もヨガを続けると心の中で決意しましょう"],
-        tip:"ヨガには終わりがありません。毎日が新しい発見です！", caution:"これからは「自分のヨガ」として、好きにアレンジしていって構いません" }
+        tip:"ヨガには終わりがありません。毎日が新しい発見です！", caution:"これからは「自分のヨガ」として好きにアレンジしていって構いません" }
     ]
   }
 ];
 
-// =====================================
-// BGM
-// =====================================
-let audioCtx=null, bgmActive=false, bgmStyle='calm';
-let masterGainNode=null, activeNodes=[], bellTimer=null;
+// ── BGM ─────────────────────────────────────────────────────────
+let audioCtx=null,bgmActive=false,bgmStyle='calm',masterGainNode=null,activeNodes=[],bellTimer=null;
+function getAudioCtx(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx;}
+function clearNodes(){if(bellTimer){clearInterval(bellTimer);bellTimer=null;}activeNodes.forEach(n=>{try{if(n.stop)n.stop(0);n.disconnect();}catch(e){}});activeNodes=[];masterGainNode=null;}
+function toggleBGM(){if(bgmActive){clearNodes();bgmActive=false;}else{startBGM();}updateBGMBtn();}
+function setBGMStyle(s){bgmStyle=s;document.querySelectorAll('.bgm-style-btn').forEach(b=>b.classList.toggle('active',b.dataset.style===s));if(bgmActive)startBGM();}
+function setVolume(v){if(masterGainNode&&audioCtx)masterGainNode.gain.linearRampToValueAtTime(parseFloat(v),audioCtx.currentTime+0.1);}
+function updateBGMBtn(){const b=document.getElementById('bgm-toggle');if(!b)return;if(bgmActive){b.textContent='⏹ BGM停止';b.classList.add('playing');}else{b.textContent='▶ BGM再生';b.classList.remove('playing');}}
+function startBGM(){const ctx=getAudioCtx();if(ctx.state==='suspended')ctx.resume();clearNodes();bgmActive=true;const vol=parseFloat(document.getElementById('bgm-vol').value);masterGainNode=ctx.createGain();masterGainNode.gain.setValueAtTime(0,ctx.currentTime);masterGainNode.gain.linearRampToValueAtTime(vol,ctx.currentTime+1.5);masterGainNode.connect(ctx.destination);activeNodes.push(masterGainNode);if(bgmStyle==='calm')playCalmAmbient(ctx);else if(bgmStyle==='bell')playBells(ctx);else playNature(ctx);updateBGMBtn();}
+function playCalmAmbient(ctx){[110,138.59,164.81,220,277.18,329.63].forEach((freq,i)=>{const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime(freq*(1+i*0.0006),ctx.currentTime);const lfo=ctx.createOscillator(),lfoGain=ctx.createGain();lfo.frequency.setValueAtTime(0.15+i*0.04,ctx.currentTime);lfoGain.gain.setValueAtTime(0.025,ctx.currentTime);lfo.connect(lfoGain);lfoGain.connect(gain.gain);lfo.start();gain.gain.setValueAtTime(0.10,ctx.currentTime);osc.connect(gain);gain.connect(masterGainNode);osc.start();activeNodes.push(osc,gain,lfo,lfoGain);});}
+function playBells(ctx){function ring(){if(!bgmActive||!masterGainNode)return;[528,792,1188].forEach((freq,i)=>{const osc=ctx.createOscillator(),g=ctx.createGain();osc.type='sine';osc.frequency.setValueAtTime(freq,ctx.currentTime);g.gain.setValueAtTime(0,ctx.currentTime);g.gain.linearRampToValueAtTime(0.28/(i+1),ctx.currentTime+0.01);g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+5);osc.connect(g);g.connect(masterGainNode);osc.start();osc.stop(ctx.currentTime+5.1);});}ring();bellTimer=setInterval(ring,9000);}
+function playNature(ctx){const bufSize=ctx.sampleRate*4,buf=ctx.createBuffer(1,bufSize,ctx.sampleRate),data=buf.getChannelData(0);for(let i=0;i<bufSize;i++)data[i]=Math.random()*2-1;const noise=ctx.createBufferSource();noise.buffer=buf;noise.loop=true;const filter=ctx.createBiquadFilter();filter.type='lowpass';filter.frequency.setValueAtTime(500,ctx.currentTime);const lfo=ctx.createOscillator(),lfoGain=ctx.createGain();lfo.frequency.setValueAtTime(0.07,ctx.currentTime);lfoGain.gain.setValueAtTime(350,ctx.currentTime);lfo.connect(lfoGain);lfoGain.connect(filter.frequency);lfo.start();noise.connect(filter);filter.connect(masterGainNode);noise.start();activeNodes.push(noise,filter,lfo,lfoGain);}
 
-function getAudioCtx(){
-  if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-  return audioCtx;
-}
-function clearNodes(){
-  if(bellTimer){clearInterval(bellTimer);bellTimer=null;}
-  activeNodes.forEach(n=>{try{if(n.stop)n.stop(0);n.disconnect();}catch(e){}});
-  activeNodes=[];masterGainNode=null;
-}
-function toggleBGM(){
-  if(bgmActive){clearNodes();bgmActive=false;}else{startBGM();}
-  updateBGMBtn();
-}
-function setBGMStyle(style){
-  bgmStyle=style;
-  document.querySelectorAll('.bgm-style-btn').forEach(b=>b.classList.toggle('active',b.dataset.style===style));
-  if(bgmActive)startBGM();
-}
-function setVolume(val){
-  if(masterGainNode&&audioCtx)masterGainNode.gain.linearRampToValueAtTime(parseFloat(val),audioCtx.currentTime+0.1);
-}
-function updateBGMBtn(){
-  const btn=document.getElementById('bgm-toggle');if(!btn)return;
-  if(bgmActive){btn.textContent='⏹ BGM停止';btn.classList.add('playing');}
-  else{btn.textContent='▶ BGM再生';btn.classList.remove('playing');}
-}
-function startBGM(){
-  const ctx=getAudioCtx();
-  if(ctx.state==='suspended')ctx.resume();
-  clearNodes();bgmActive=true;
-  const vol=parseFloat(document.getElementById('bgm-vol').value);
-  masterGainNode=ctx.createGain();
-  masterGainNode.gain.setValueAtTime(0,ctx.currentTime);
-  masterGainNode.gain.linearRampToValueAtTime(vol,ctx.currentTime+1.5);
-  masterGainNode.connect(ctx.destination);
-  activeNodes.push(masterGainNode);
-  if(bgmStyle==='calm')playCalmAmbient(ctx);
-  else if(bgmStyle==='bell')playBells(ctx);
-  else playNature(ctx);
-  updateBGMBtn();
-}
-function playCalmAmbient(ctx){
-  [110,138.59,164.81,220,277.18,329.63].forEach((freq,i)=>{
-    const osc=ctx.createOscillator(),gain=ctx.createGain();
-    osc.type='sine';osc.frequency.setValueAtTime(freq*(1+i*0.0006),ctx.currentTime);
-    const lfo=ctx.createOscillator(),lfoGain=ctx.createGain();
-    lfo.frequency.setValueAtTime(0.15+i*0.04,ctx.currentTime);lfoGain.gain.setValueAtTime(0.025,ctx.currentTime);
-    lfo.connect(lfoGain);lfoGain.connect(gain.gain);lfo.start();
-    gain.gain.setValueAtTime(0.10,ctx.currentTime);osc.connect(gain);gain.connect(masterGainNode);osc.start();
-    activeNodes.push(osc,gain,lfo,lfoGain);
-  });
-}
-function playBells(ctx){
-  function ring(){
-    if(!bgmActive||!masterGainNode)return;
-    [528,792,1188].forEach((freq,i)=>{
-      const osc=ctx.createOscillator(),g=ctx.createGain();
-      osc.type='sine';osc.frequency.setValueAtTime(freq,ctx.currentTime);
-      g.gain.setValueAtTime(0,ctx.currentTime);
-      g.gain.linearRampToValueAtTime(0.28/(i+1),ctx.currentTime+0.01);
-      g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+5);
-      osc.connect(g);g.connect(masterGainNode);osc.start();osc.stop(ctx.currentTime+5.1);
-    });
-  }
-  ring();bellTimer=setInterval(ring,9000);
-}
-function playNature(ctx){
-  const bufSize=ctx.sampleRate*4,buf=ctx.createBuffer(1,bufSize,ctx.sampleRate);
-  const data=buf.getChannelData(0);for(let i=0;i<bufSize;i++)data[i]=Math.random()*2-1;
-  const noise=ctx.createBufferSource();noise.buffer=buf;noise.loop=true;
-  const filter=ctx.createBiquadFilter();filter.type='lowpass';filter.frequency.setValueAtTime(500,ctx.currentTime);
-  const lfo=ctx.createOscillator(),lfoGain=ctx.createGain();
-  lfo.frequency.setValueAtTime(0.07,ctx.currentTime);lfoGain.gain.setValueAtTime(350,ctx.currentTime);
-  lfo.connect(lfoGain);lfoGain.connect(filter.frequency);lfo.start();
-  noise.connect(filter);filter.connect(masterGainNode);noise.start();
-  activeNodes.push(noise,filter,lfo,lfoGain);
-}
-
-// =====================================
-// STATE & RENDER
-// =====================================
-let currentWeek=1, currentDay=null;
+// ── STATE & RENDER ───────────────────────────────────────────────
+let currentWeek=1,currentDay=null;
 let completedDays=JSON.parse(localStorage.getItem('yogaCompleted')||'[]');
 
 function showWeek(week){
@@ -820,57 +673,39 @@ function showWeek(week){
   document.getElementById('week-intro').innerHTML=`<div class="week-badge"><strong>${info.title}</strong>${info.desc}</div>`;
   renderCalendar(week);hideLessonPanel();
 }
-
 function renderCalendar(week){
   const days=lessons.filter(l=>l.week===week);
-  document.getElementById('calendar').innerHTML=days.map(lesson=>{
-    const done=completedDays.includes(lesson.day),active=currentDay===lesson.day;
-    return `<button class="day-btn ${active?'active':''} ${done?'completed':''}" onclick="showLesson(${lesson.day})">
-      <span class="day-num">${lesson.day}</span>
-      <span class="day-label">${lesson.theme}</span>
+  document.getElementById('calendar').innerHTML=days.map(l=>{
+    const done=completedDays.includes(l.day),active=currentDay===l.day;
+    return `<button class="day-btn${active?' active':''}${done?' completed':''}" onclick="showLesson(${l.day})">
+      <span class="day-num">${l.day}</span>
+      <span class="day-label">${l.theme}</span>
       <span class="day-check">${done?'✅':'▶'}</span>
     </button>`;
   }).join('');
 }
-
-function ytUrl(name){ return 'https://www.youtube.com/results?search_query='+encodeURIComponent('シニアヨガ '+name); }
-
+function ytUrl(name){return 'https://www.youtube.com/results?search_query='+encodeURIComponent('シニアヨガ '+name);}
 function showLesson(dayNum){
   currentDay=dayNum;
   const lesson=lessons.find(l=>l.day===dayNum);if(!lesson)return;
   renderCalendar(currentWeek);
   const isDone=completedDays.includes(dayNum);
-
   const posesHTML=lesson.poses.map(p=>`
     <div class="pose-card">
       <div class="pose-header">
-        <div class="pose-icon"><span class="material-symbols-outlined">${p.icon}</span></div>
+        <div class="pose-icon">${SVG[p.icon]||SVG.breath}</div>
         <div>
           <div class="pose-name">${p.name}</div>
           <div class="pose-duration">⏱ ${p.duration}</div>
         </div>
       </div>
-      <ul class="steps">
-        ${p.steps.map((s,i)=>`<li><span class="step-num">${i+1}</span><span>${s}</span></li>`).join('')}
-      </ul>
+      <ul class="steps">${p.steps.map((s,i)=>`<li><span class="step-num">${i+1}</span><span>${s}</span></li>`).join('')}</ul>
       ${p.tip?`<div class="tip-box">${p.tip}</div>`:''}
       ${p.caution?`<div class="caution-box">${p.caution}</div>`:''}
-      <a class="yt-search-btn" href="${ytUrl(p.name)}" target="_blank" rel="noopener">
-        ▶ YouTube で「${p.name}」を検索
-      </a>
+      <a class="yt-search-btn" href="${ytUrl(p.name)}" target="_blank" rel="noopener">▶ YouTube で「${p.name}」を検索</a>
     </div>`).join('');
-
   const vid=videoMap[lesson.theme];
-  const videoHTML=vid?`
-    <div class="video-section">
-      <div class="section-title">🎬 参考動画（テーマ：${lesson.theme}）</div>
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/${vid.id}?rel=0&modestbranding=1"
-                allowfullscreen loading="lazy" title="${vid.title}"></iframe>
-      </div>
-      <p class="video-caption">📺 ${vid.title}</p>
-    </div>`:'';
-
+  const videoHTML=vid?`<div class="video-section"><div class="section-title">🎬 参考動画（${lesson.theme}）</div><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/${vid.id}?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="${vid.title}"></iframe></div><p class="video-caption">📺 ${vid.title}</p></div>`:'';
   document.getElementById('lesson-content').innerHTML=`
     <div class="lesson-header">
       <div class="lesson-day">第${lesson.week}週 · Day ${lesson.day}</div>
@@ -881,32 +716,20 @@ function showLesson(dayNum){
       <div class="intro-box">${lesson.intro}</div>
       ${videoHTML}
       <div class="section-title">🌬️ 今日の呼吸法</div>
-      <div class="breathing-box">
-        <div class="b-title">${lesson.breathing.name}</div>
-        ${lesson.breathing.desc.replace(/\n/g,'<br>')}
-      </div>
+      <div class="breathing-box"><div class="b-title">${lesson.breathing.name}</div>${lesson.breathing.desc.replace(/\n/g,'<br>')}</div>
       <div class="section-title">🧘 今日のポーズ</div>
       ${posesHTML}
-      <button class="complete-btn ${isDone?'done':''}" onclick="markComplete(${dayNum})">
-        ${isDone?'✅ 完了済み！お疲れ様でした 🌸':'✔️ 今日のレッスンを完了する'}
-      </button>
+      <button class="complete-btn${isDone?' done':''}" onclick="markComplete(${dayNum})">${isDone?'✅ 完了済み！お疲れ様でした 🌸':'✔️ 今日のレッスンを完了する'}</button>
     </div>`;
-
   const panel=document.getElementById('lesson-panel');
   panel.classList.add('visible');
   setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
-
 function hideLessonPanel(){currentDay=null;document.getElementById('lesson-panel').classList.remove('visible');}
-
 function markComplete(dayNum){
-  if(!completedDays.includes(dayNum)){
-    completedDays.push(dayNum);
-    localStorage.setItem('yogaCompleted',JSON.stringify(completedDays));
-  }
+  if(!completedDays.includes(dayNum)){completedDays.push(dayNum);localStorage.setItem('yogaCompleted',JSON.stringify(completedDays));}
   renderCalendar(currentWeek);showLesson(dayNum);
 }
-
 showWeek(1);
 </script>
 </body>
